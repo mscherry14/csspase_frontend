@@ -1,0 +1,152 @@
+{
+  "@@locale": "ru",
+
+  "balanceCardLabel": "Ваш баланс:",
+  "balanceCardCount": "{count}",
+  "@balanceCardCount": {
+    "placeholders": {
+      "count": {
+        "type": "int",
+        "description": "Account balance"
+      }
+    }
+  },
+
+  "transactionDateTime": "{dateTime}",
+  "@transactionDateTime": {
+    "placeholders": {
+      "dateTime": {
+        "type": "DateTime",
+        "format": "d.MM.yyyy HH:mm",
+        "isCustomDateFormat": "true"
+      }
+    }
+  },
+  "transactionVariation": "{variation}",
+  "@transactionVariation": {
+    "placeholders": {
+      "variation": {
+        "type": "int"
+      }
+    }
+  },
+  "transactionHistory": "История транзакций",
+
+  "priceOrderCard": "{price} токенов",
+  "@priceOrderCard": {
+    "placeholders": {
+      "price": {
+        "type": "int",
+        "description": "price of order"
+      }
+    }
+  },
+  "orderDateTime": "{dateTime}",
+  "@orderDateTime": {
+    "placeholders": {
+      "dateTime": {
+        "type": "DateTime",
+        "format": "d.MM.yyyy HH:mm",
+        "isCustomDateFormat": "true"
+      }
+    }
+  },
+  "orderStatus": "{status, select, waiting{ожидает подтверждения} completed{завершен} rejected{отменён} other{неизвестен}}",
+  "@orderStatus": {
+    "description": "Order status message on order card",
+    "placeholders": {
+      "status": {}
+    }
+  },
+
+  "productPrice": "{price} T",
+  "@productPrice": {
+    "placeholders": {
+      "price": {
+        "type": "int"
+      }
+    }
+  },
+  "buy": "купить",
+  "purchaseConfirmation": "подтверждение покупки",
+  "purchaseConfirmationBody": "Вы точно хотите приобрести этот товар?",
+  "purchaseSuccess": "Покупка совершена успешно!",
+  "purchaseSuccessLabel": "Информацию по поводу получения вы можете отслеживать во вкладке заказов",
+  "close": "закрыть",
+
+  "purchaseError": "Не удалось завершить покупку",
+  "purchaseErrorLabel": "Повторите попытку позже.\nТекст ошибки: {message}",
+  "@purchaseErrorLabel": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "unknownError": "неизвестная ошибка",
+  "smthWentWrong": "Что-то пошло не так...",
+  "smthWentWrongLabel": "Попробуйте обновить страницу и попробовать позже.",
+
+  "wallet": "Кошелек",
+  "shop": "Магазин",
+  "orders": "Заказы",
+  "events": "Мероприятия",
+
+  "accrue": "начислить",
+  "participantEventAccrual": "всего начислено: {accrual}",
+  "@participantEventAccrual": {
+    "placeholders": {
+      "accrual": {
+        "type": "int"
+      }
+    }
+  },
+
+  "eventCapacity": "доступно: {capacity}",
+  "@eventCapacity": {
+    "placeholders": {
+      "capacity": {
+        "type": "int"
+      }
+    }
+  },
+  "accrualSum": "Сумма начисления:",
+  "accrualSumError": "{message, select, zeroOrLess{сумма начисления не может быть 0} overflow{сумма начисления не может превышать баланс мероприятия} other{данные некорректны}}",
+  "@accrualSumError": {
+    "description": "Order status message on order card",
+    "placeholders": {
+      "message": {}
+    }
+  },
+  "accrualConfirmation": "Начислить токены",
+  "accrualSuccess": "Начисление выполнено успешно!",
+  "accrualSuccessLabel": "Очень успешно, не забудь убрать эту строчку))0)",
+
+  "accrualError": "Перевод не прошёл :(",
+  "accrualErrorLabel": "Произошла какая-то такая-то ошибка, попробуйте позже.\nТекст ошибки: {message}",
+  "@accrualErrorLabel": {
+    "placeholders": {
+      "message": {
+        "type": "String"
+      }
+    }
+  },
+
+  "accrueDeadline": "доступно для начислений до {dateTime}",
+  "@accrueDeadline": {
+    "placeholders": {
+      "dateTime": {
+        "type": "DateTime",
+        "format": "d/MM/yyyy HH:mm",
+        "isCustomDateFormat": "true"
+      }
+    }
+  },
+
+  "participants": "Участники",
+  "lector": "Преподаватель",
+
+  "eventBalance": "Баланс мероприятия:",
+  "balance": "Баланс"
+}
