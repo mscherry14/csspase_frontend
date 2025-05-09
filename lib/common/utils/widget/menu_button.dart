@@ -83,9 +83,9 @@ class MenuNavTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final customTheme =
-        Theme.of(context).extension<CustomThemeData>() ??
-        CustomThemeData.defaultThemeData;
+    // final customTheme =
+    //     Theme.of(context).extension<CustomThemeData>() ??
+    //     CustomThemeData.defaultThemeData;
 
     return TextButton(
       onPressed: () {

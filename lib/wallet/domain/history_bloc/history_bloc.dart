@@ -21,7 +21,6 @@ class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   ) {
     on<HistoryEvent>((event, emit) => switch (event) {
       HistoryReload() => _reloadHistory(event, emit),
-      HistoryEvent() => throw UnimplementedError(), //todo: fix that shit
     });
   }
 

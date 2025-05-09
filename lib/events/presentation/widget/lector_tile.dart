@@ -1,4 +1,3 @@
-import 'package:csspace_app/common/theme/widget/constants/dark_theme_colors.dart';
 import 'package:csspace_app/events/domain/model/person_model.dart';
 import 'package:flutter/material.dart';
 

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../common/locale/locale.dart';
 import '../../../common/theme/theme.dart';
 
 class WarningChip extends StatelessWidget {

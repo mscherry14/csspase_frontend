@@ -20,7 +20,6 @@ class LocaleBloc extends Bloc<LocaleEvent, LocaleState> {
         LocaleChanged() => _changeLocale(event, emit),
         LocaleReload() => _reloadLocale(event, emit),
         LocaleInit() => _getLocale(event, emit),
-        LocaleEvent() => throw UnimplementedError(), //todo: fix that shit
       },
     );
   }

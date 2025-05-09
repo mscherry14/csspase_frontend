@@ -21,7 +21,6 @@ class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
         ThemeChanged() => _changeTheme(event, emit),
         ThemeReload() => _reloadTheme(event, emit),
         ThemeInit() => _getTheme(event, emit),
-        ThemeEvent() => throw UnimplementedError(), //todo: fix that shit
       },
     );
   }

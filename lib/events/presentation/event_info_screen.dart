@@ -68,7 +68,7 @@ class EventInfoScreen extends StatelessWidget {
                       ///DEADLINE WARNING CHIP IF NEEDED
                       if (event.deadline.isBefore(DateTime(2025, 9, 1)))
                         WarningChip(
-                          //todo: fox hardcode
+                          //todo: fix hardcode
                           text: AppLocaleScope.of(
                             context,
                           ).accrueDeadline(event.deadline),

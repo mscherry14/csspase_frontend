@@ -12,162 +12,181 @@ part of 'history_bloc.dart';
 
 // dart format off
 T _$identity<T>(T value) => value;
-
 /// @nodoc
 mixin _$HistoryEvent {
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is HistoryEvent);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  String toString() {
-    return 'HistoryEvent()';
-  }
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HistoryEvent);
+}
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HistoryEvent()';
+}
+
+
 }
 
 /// @nodoc
-class $HistoryEventCopyWith<$Res> {
-  $HistoryEventCopyWith(HistoryEvent _, $Res Function(HistoryEvent) __);
+class $HistoryEventCopyWith<$Res>  {
+$HistoryEventCopyWith(HistoryEvent _, $Res Function(HistoryEvent) __);
 }
 
+
 /// @nodoc
+
 
 class HistoryReload implements HistoryEvent {
   const HistoryReload();
+  
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is HistoryReload);
-  }
 
-  @override
-  int get hashCode => runtimeType.hashCode;
 
-  @override
-  String toString() {
-    return 'HistoryEvent.reload()';
-  }
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HistoryReload);
 }
+
+
+@override
+int get hashCode => runtimeType.hashCode;
+
+@override
+String toString() {
+  return 'HistoryEvent.reload()';
+}
+
+
+}
+
+
+
 
 /// @nodoc
 mixin _$HistoryState {
-  List<TransactionInfoModel> get history;
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  $HistoryStateCopyWith<HistoryState> get copyWith =>
-      _$HistoryStateCopyWithImpl<HistoryState>(
-          this as HistoryState, _$identity);
+ List<TransactionInfoModel> get history;
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$HistoryStateCopyWith<HistoryState> get copyWith => _$HistoryStateCopyWithImpl<HistoryState>(this as HistoryState, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is HistoryState &&
-            const DeepCollectionEquality().equals(other.history, history));
-  }
 
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(history));
 
-  @override
-  String toString() {
-    return 'HistoryState(history: $history)';
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HistoryState&&const DeepCollectionEquality().equals(other.history, history));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(history));
+
+@override
+String toString() {
+  return 'HistoryState(history: $history)';
+}
+
+
 }
 
 /// @nodoc
-abstract mixin class $HistoryStateCopyWith<$Res> {
-  factory $HistoryStateCopyWith(
-          HistoryState value, $Res Function(HistoryState) _then) =
-      _$HistoryStateCopyWithImpl;
-  @useResult
-  $Res call({List<TransactionInfoModel> history});
-}
+abstract mixin class $HistoryStateCopyWith<$Res>  {
+  factory $HistoryStateCopyWith(HistoryState value, $Res Function(HistoryState) _then) = _$HistoryStateCopyWithImpl;
+@useResult
+$Res call({
+ List<TransactionInfoModel> history
+});
 
+
+
+
+}
 /// @nodoc
-class _$HistoryStateCopyWithImpl<$Res> implements $HistoryStateCopyWith<$Res> {
+class _$HistoryStateCopyWithImpl<$Res>
+    implements $HistoryStateCopyWith<$Res> {
   _$HistoryStateCopyWithImpl(this._self, this._then);
 
   final HistoryState _self;
   final $Res Function(HistoryState) _then;
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? history = null,
-  }) {
-    return _then(_self.copyWith(
-      history: null == history
-          ? _self.history
-          : history // ignore: cast_nullable_to_non_nullable
-              as List<TransactionInfoModel>,
-    ));
-  }
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') @override $Res call({Object? history = null,}) {
+  return _then(_self.copyWith(
+history: null == history ? _self.history : history // ignore: cast_nullable_to_non_nullable
+as List<TransactionInfoModel>,
+  ));
 }
 
+}
+
+
 /// @nodoc
+
 
 class _HistoryState implements HistoryState {
-  const _HistoryState({required final List<TransactionInfoModel> history})
-      : _history = history;
+  const _HistoryState({required final  List<TransactionInfoModel> history}): _history = history;
+  
 
-  final List<TransactionInfoModel> _history;
-  @override
-  List<TransactionInfoModel> get history {
-    if (_history is EqualUnmodifiableListView) return _history;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_history);
-  }
+ final  List<TransactionInfoModel> _history;
+@override List<TransactionInfoModel> get history {
+  if (_history is EqualUnmodifiableListView) return _history;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_history);
+}
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$HistoryStateCopyWith<_HistoryState> get copyWith =>
-      __$HistoryStateCopyWithImpl<_HistoryState>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _HistoryState &&
-            const DeepCollectionEquality().equals(other._history, _history));
-  }
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$HistoryStateCopyWith<_HistoryState> get copyWith => __$HistoryStateCopyWithImpl<_HistoryState>(this, _$identity);
 
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(_history));
 
-  @override
-  String toString() {
-    return 'HistoryState(history: $history)';
-  }
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HistoryState&&const DeepCollectionEquality().equals(other._history, _history));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_history));
+
+@override
+String toString() {
+  return 'HistoryState(history: $history)';
+}
+
+
 }
 
 /// @nodoc
-abstract mixin class _$HistoryStateCopyWith<$Res>
-    implements $HistoryStateCopyWith<$Res> {
-  factory _$HistoryStateCopyWith(
-          _HistoryState value, $Res Function(_HistoryState) _then) =
-      __$HistoryStateCopyWithImpl;
-  @override
-  @useResult
-  $Res call({List<TransactionInfoModel> history});
-}
+abstract mixin class _$HistoryStateCopyWith<$Res> implements $HistoryStateCopyWith<$Res> {
+  factory _$HistoryStateCopyWith(_HistoryState value, $Res Function(_HistoryState) _then) = __$HistoryStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<TransactionInfoModel> history
+});
 
+
+
+
+}
 /// @nodoc
 class __$HistoryStateCopyWithImpl<$Res>
     implements _$HistoryStateCopyWith<$Res> {
@@ -176,79 +195,71 @@ class __$HistoryStateCopyWithImpl<$Res>
   final _HistoryState _self;
   final $Res Function(_HistoryState) _then;
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? history = null,
-  }) {
-    return _then(_HistoryState(
-      history: null == history
-          ? _self._history
-          : history // ignore: cast_nullable_to_non_nullable
-              as List<TransactionInfoModel>,
-    ));
-  }
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? history = null,}) {
+  return _then(_HistoryState(
+history: null == history ? _self._history : history // ignore: cast_nullable_to_non_nullable
+as List<TransactionInfoModel>,
+  ));
+}
+
+
 }
 
 /// @nodoc
+
 
 class _HistoryErrorState implements HistoryState {
-  const _HistoryErrorState(
-      {required final List<TransactionInfoModel> history,
-      required this.errorMessage})
-      : _history = history;
+  const _HistoryErrorState({required final  List<TransactionInfoModel> history, required this.errorMessage}): _history = history;
+  
 
-  final List<TransactionInfoModel> _history;
-  @override
-  List<TransactionInfoModel> get history {
-    if (_history is EqualUnmodifiableListView) return _history;
-    // ignore: implicit_dynamic_type
-    return EqualUnmodifiableListView(_history);
-  }
+ final  List<TransactionInfoModel> _history;
+@override List<TransactionInfoModel> get history {
+  if (_history is EqualUnmodifiableListView) return _history;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_history);
+}
 
-  final String errorMessage;
+ final  String errorMessage;
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @pragma('vm:prefer-inline')
-  _$HistoryErrorStateCopyWith<_HistoryErrorState> get copyWith =>
-      __$HistoryErrorStateCopyWithImpl<_HistoryErrorState>(this, _$identity);
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@override @JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+_$HistoryErrorStateCopyWith<_HistoryErrorState> get copyWith => __$HistoryErrorStateCopyWithImpl<_HistoryErrorState>(this, _$identity);
 
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _HistoryErrorState &&
-            const DeepCollectionEquality().equals(other._history, _history) &&
-            (identical(other.errorMessage, errorMessage) ||
-                other.errorMessage == errorMessage));
-  }
 
-  @override
-  int get hashCode => Object.hash(
-      runtimeType, const DeepCollectionEquality().hash(_history), errorMessage);
 
-  @override
-  String toString() {
-    return 'HistoryState.error(history: $history, errorMessage: $errorMessage)';
-  }
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HistoryErrorState&&const DeepCollectionEquality().equals(other._history, _history)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_history),errorMessage);
+
+@override
+String toString() {
+  return 'HistoryState.error(history: $history, errorMessage: $errorMessage)';
+}
+
+
 }
 
 /// @nodoc
-abstract mixin class _$HistoryErrorStateCopyWith<$Res>
-    implements $HistoryStateCopyWith<$Res> {
-  factory _$HistoryErrorStateCopyWith(
-          _HistoryErrorState value, $Res Function(_HistoryErrorState) _then) =
-      __$HistoryErrorStateCopyWithImpl;
-  @override
-  @useResult
-  $Res call({List<TransactionInfoModel> history, String errorMessage});
-}
+abstract mixin class _$HistoryErrorStateCopyWith<$Res> implements $HistoryStateCopyWith<$Res> {
+  factory _$HistoryErrorStateCopyWith(_HistoryErrorState value, $Res Function(_HistoryErrorState) _then) = __$HistoryErrorStateCopyWithImpl;
+@override @useResult
+$Res call({
+ List<TransactionInfoModel> history, String errorMessage
+});
 
+
+
+
+}
 /// @nodoc
 class __$HistoryErrorStateCopyWithImpl<$Res>
     implements _$HistoryErrorStateCopyWith<$Res> {
@@ -257,25 +268,17 @@ class __$HistoryErrorStateCopyWithImpl<$Res>
   final _HistoryErrorState _self;
   final $Res Function(_HistoryErrorState) _then;
 
-  /// Create a copy of HistoryState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $Res call({
-    Object? history = null,
-    Object? errorMessage = null,
-  }) {
-    return _then(_HistoryErrorState(
-      history: null == history
-          ? _self._history
-          : history // ignore: cast_nullable_to_non_nullable
-              as List<TransactionInfoModel>,
-      errorMessage: null == errorMessage
-          ? _self.errorMessage
-          : errorMessage // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
+/// Create a copy of HistoryState
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? history = null,Object? errorMessage = null,}) {
+  return _then(_HistoryErrorState(
+history: null == history ? _self._history : history // ignore: cast_nullable_to_non_nullable
+as List<TransactionInfoModel>,errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
 }
 
 // dart format on

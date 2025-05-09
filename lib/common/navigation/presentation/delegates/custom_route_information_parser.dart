@@ -1,4 +1,3 @@
-import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:flutter/material.dart';
 
 import '../paths/custom_route_path.dart';
@@ -82,8 +81,8 @@ class CustomRouteInformationParser
         return RouteInformation(uri: Uri(path: '/wallet'));
     }
   }
-
-  bool _parseBool(String? value) {
-    return value?.toLowerCase() == 'true';
-  }
+  //
+  // bool _parseBool(String? value) {
+  //   return value?.toLowerCase() == 'true';
+  // }
 }

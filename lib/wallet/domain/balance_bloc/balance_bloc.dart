@@ -19,7 +19,6 @@ class BalanceBloc extends Bloc<BalanceEvent, BalanceState> {
         ) {
     on<BalanceEvent>((event, emit) => switch (event) {
           BalanceReload() => _reloadBalance(event, emit),
-          BalanceEvent() => throw UnimplementedError(), //todo: fix that shit
         });
   }
 

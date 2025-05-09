@@ -1,4 +1,3 @@
-import 'package:flutter/painting.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'event_info_model.freezed.dart';

@@ -1,4 +1,3 @@
-import 'package:csspace_app/common/theme/widget/constants/dark_theme_colors.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/theme/theme.dart';
@@ -28,7 +27,7 @@ class InfoChip extends StatelessWidget {
                 : customTheme.infoChipBackground,
         borderRadius: BorderRadius.circular(
           paddingTheme.mediumBorderRadius,
-        ), //todo: border radius
+        ),
       ),
       child: Padding(
         padding: EdgeInsets.symmetric(

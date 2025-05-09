@@ -88,7 +88,7 @@ class AccrualValidFormState implements AccrualValidationFormState {
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$ValidFormStateCopyWith<AccrualValidFormState> get copyWith => _$ValidFormStateCopyWithImpl<AccrualValidFormState>(this, _$identity);
+$AccrualValidFormStateCopyWith<AccrualValidFormState> get copyWith => _$AccrualValidFormStateCopyWithImpl<AccrualValidFormState>(this, _$identity);
 
 
 
@@ -110,8 +110,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $ValidFormStateCopyWith<$Res> implements $AccrualValidationFormStateCopyWith<$Res> {
-  factory $ValidFormStateCopyWith(AccrualValidFormState value, $Res Function(AccrualValidFormState) _then) = _$ValidFormStateCopyWithImpl;
+abstract mixin class $AccrualValidFormStateCopyWith<$Res> implements $AccrualValidationFormStateCopyWith<$Res> {
+  factory $AccrualValidFormStateCopyWith(AccrualValidFormState value, $Res Function(AccrualValidFormState) _then) = _$AccrualValidFormStateCopyWithImpl;
 @override @useResult
 $Res call({
  int sumToSend, int capacity
@@ -122,9 +122,9 @@ $Res call({
 
 }
 /// @nodoc
-class _$ValidFormStateCopyWithImpl<$Res>
-    implements $ValidFormStateCopyWith<$Res> {
-  _$ValidFormStateCopyWithImpl(this._self, this._then);
+class _$AccrualValidFormStateCopyWithImpl<$Res>
+    implements $AccrualValidFormStateCopyWith<$Res> {
+  _$AccrualValidFormStateCopyWithImpl(this._self, this._then);
 
   final AccrualValidFormState _self;
   final $Res Function(AccrualValidFormState) _then;
@@ -157,7 +157,7 @@ class AccrualNotValidFormState implements AccrualValidationFormState {
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$NotValidFormStateCopyWith<AccrualNotValidFormState> get copyWith => _$NotValidFormStateCopyWithImpl<AccrualNotValidFormState>(this, _$identity);
+$AccrualNotValidFormStateCopyWith<AccrualNotValidFormState> get copyWith => _$AccrualNotValidFormStateCopyWithImpl<AccrualNotValidFormState>(this, _$identity);
 
 
 
@@ -179,8 +179,8 @@ String toString() {
 }
 
 /// @nodoc
-abstract mixin class $NotValidFormStateCopyWith<$Res> implements $AccrualValidationFormStateCopyWith<$Res> {
-  factory $NotValidFormStateCopyWith(AccrualNotValidFormState value, $Res Function(AccrualNotValidFormState) _then) = _$NotValidFormStateCopyWithImpl;
+abstract mixin class $AccrualNotValidFormStateCopyWith<$Res> implements $AccrualValidationFormStateCopyWith<$Res> {
+  factory $AccrualNotValidFormStateCopyWith(AccrualNotValidFormState value, $Res Function(AccrualNotValidFormState) _then) = _$AccrualNotValidFormStateCopyWithImpl;
 @override @useResult
 $Res call({
  int sumToSend, int capacity, String errorMessage
@@ -191,9 +191,9 @@ $Res call({
 
 }
 /// @nodoc
-class _$NotValidFormStateCopyWithImpl<$Res>
-    implements $NotValidFormStateCopyWith<$Res> {
-  _$NotValidFormStateCopyWithImpl(this._self, this._then);
+class _$AccrualNotValidFormStateCopyWithImpl<$Res>
+    implements $AccrualNotValidFormStateCopyWith<$Res> {
+  _$AccrualNotValidFormStateCopyWithImpl(this._self, this._then);
 
   final AccrualNotValidFormState _self;
   final $Res Function(AccrualNotValidFormState) _then;
