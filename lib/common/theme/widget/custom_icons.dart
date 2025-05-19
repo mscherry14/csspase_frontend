@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'icons/hamburger_menu.dart';
 import 'icons/wallet.dart';
 import 'icons/check_contained.dart';
 import 'icons/order.dart';
@@ -33,6 +34,11 @@ abstract final class CustomIcons {
     required double size,
     required Color color,
   }) => CheckContainedIconPainter(dimension: size, color: color);
+
+  static CustomPainter hamburgerMenu({
+    required double size,
+    required Color color,
+  }) => HamburgerMenuIconPainter(dimension: size, color: color);
 }
 
 class CustomIcon extends StatelessWidget {

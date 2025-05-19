@@ -11,31 +11,27 @@ part 'balance_bloc.freezed.dart';
 class BalanceBloc extends Bloc<BalanceEvent, BalanceState> {
   final BalanceRepository _repository;
 
-  BalanceBloc(this._repository)
-      : super(
-          const BalanceState(
-            balance: 0,
-          ),
-        ) {
-    on<BalanceEvent>((event, emit) => switch (event) {
-          BalanceReload() => _reloadBalance(event, emit),
-        });
+  BalanceBloc(this._repository) : super(const BalanceState(balance: 0)) {
+    on<BalanceEvent>(
+      (event, emit) async => switch (event) {
+        BalanceReload() => await _reloadBalance(event, emit),
+      },
+    );
   }
 
-  void _reloadBalance(BalanceReload event, Emitter emit) {
+  Future<void> _reloadBalance(BalanceReload event, Emitter emit) async {
     final state = this.state;
-    _repository.getBalance().then((result) {
-      switch (result) {
-        case SimpleOkResponse(:final payload):
-          emit(BalanceState(balance: payload ?? state.balance));
-        case SimpleErrorResponse(:final message, :final payload):
-          emit(
-            BalanceState.error(
-              balance: payload ?? state.balance,
-              errorMessage: message,
-            ),
-          );
-      }
-    });
+    final result = await _repository.getBalance();
+    switch (result) {
+      case SimpleOkResponse(:final payload):
+        emit(BalanceState(balance: payload ?? state.balance));
+      case SimpleErrorResponse(:final message, :final payload):
+        emit(
+          BalanceState.error(
+            balance: payload ?? state.balance,
+            errorMessage: message,
+          ),
+        );
+    }
   }
 }

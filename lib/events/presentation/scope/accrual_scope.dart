@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/mocked_accrual_repository_impl.dart';
+import '../../../account/widget/account_scope.dart';
+import '../../data/accrual_repository.dart';
 import '../../domain/accrual_bloc/accrual_bloc.dart';
 
 class AccrualScope extends StatelessWidget {
@@ -18,10 +19,11 @@ class AccrualScope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-    create:
-        (context) =>
-            AccrualBloc(SimpleAccrualRepositoryImpl())
-              ..add(InitEvent(eventId: eventId, recipientId: recipientId)),
+    create: (context) {
+      final dio = AccountScope.dioOf(context);
+      return AccrualBloc(AccrualRepositoryImpl(dio: dio))
+        ..add(InitEvent(eventId: eventId, recipientId: recipientId));
+    },
     child: child,
   );
 }

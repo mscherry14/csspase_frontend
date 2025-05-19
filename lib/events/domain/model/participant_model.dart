@@ -1,16 +1,18 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import 'person_model.dart';
-
 part 'participant_model.freezed.dart';
+part 'participant_model.g.dart';
 
 @freezed
-class ParticipantModel with _$ParticipantModel {
-  @override
-  final PersonModel person;
-  @override
-  final int accrual;
+abstract class ParticipantModel with _$ParticipantModel {
+  const factory ParticipantModel({
+    @JsonKey(name: "id") required String id,
+    @JsonKey(name: "name") required String name,
+    // @JsonKey(name: "photo")
+    // @PhotoConverter()
+    // ImageProvider? photo,
+    @JsonKey(name: "sent") required int sent,
+  }) = _ParticipantModel;
 
-  const ParticipantModel({required this.person, required this.accrual});
-  //TODO: implement participant
+  factory ParticipantModel.fromJson(Map<String, dynamic> json) => _$ParticipantModelFromJson(json);
 }

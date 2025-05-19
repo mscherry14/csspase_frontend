@@ -24,12 +24,16 @@ class AccrualBloc extends Bloc<AccrualEvent, AccrualState> {
     final state = this.state;
     if (state is WaitForSendingState) {
       final response = await _repository.send(
-        personId: state.recipient.person.id,
+        eventId: state.eventId,
+        personId: state.recipient.id,
         sum: event.sum,
       );
       switch (response) {
         case SimpleOkResponse():
-          emit(AccrualState.success());
+          emit(AccrualState.success(
+            receiverName: state.recipient.name,
+            accrual: event.sum,
+          ));
         case SimpleErrorResponse(:final message, :final payload):
           emit(AccrualState.error(message: message));
       }
@@ -37,13 +41,13 @@ class AccrualBloc extends Bloc<AccrualEvent, AccrualState> {
   }
 
   _init(InitEvent event, Emitter<AccrualState> emit) async {
-    final response = await _repository.getRecipientById(event.recipientId);
+    final response = await _repository.getRecipientById(eventId: event.eventId, personId: event.recipientId,);
     switch (response) {
       case SimpleOkResponse(:final payload):
         if (payload != null) {
           final recipient = payload;
           final secondResponse = await _repository.getEventTokensCapacity(
-            event.eventId,
+            eventId: event.eventId,
           );
           switch (secondResponse) {
             case SimpleOkResponse(:final payload):

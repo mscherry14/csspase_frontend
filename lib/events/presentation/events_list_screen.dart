@@ -27,7 +27,6 @@ class EventListScreen extends StatelessWidget {
               ),
             ),
 
-            ///participants list
             BlocBuilder<EventsBloc, EventsState>(
               buildWhen: (prev, curr) {
                 return prev != curr;

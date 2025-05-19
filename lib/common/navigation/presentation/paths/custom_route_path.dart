@@ -1,13 +1,11 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../../../utils/simple_response.dart';
+part 'lector/events_route_path.dart';
+part 'user/products_route_path.dart';
+part 'user/orders_route_path.dart';
+part 'user/wallet_route_path.dart';
 
-part 'events_route_path.dart';
-part 'products_route_path.dart';
-part 'orders_route_path.dart';
-part 'wallet_route_path.dart';
-
-part 'student_tab_extension.dart';
+part 'user/student_tab_extension.dart';
 
 part 'custom_route_path.freezed.dart';
 
@@ -16,16 +14,17 @@ sealed class CustomRoutePath {
   const CustomRoutePath();
 }
 
+
 ///ROLED ROUTES
-sealed class StudentRoutePath extends CustomRoutePath {
-  const StudentRoutePath();
+sealed class UserRoutePath extends CustomRoutePath {
+  const UserRoutePath();
 }
 sealed class LectorRoutePath extends CustomRoutePath {
   const LectorRoutePath();
 }
-sealed class AdminRoutePath extends CustomRoutePath {
-  const AdminRoutePath();
-}
+// sealed class AdminRoutePath extends CustomRoutePath {
+//   const AdminRoutePath();
+// }
 
 ///UNKNOWN
 @freezed

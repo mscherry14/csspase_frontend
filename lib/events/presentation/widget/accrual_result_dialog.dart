@@ -45,14 +45,14 @@ class AccrualSuccessDialog extends StatelessWidget {
                 ?.apply(color: customTheme.positiveColor),
             textAlign: TextAlign.center,
           ),
-          SizedBox(
-            height: paddingTheme.mediumElementDistance,
-          ),
-          Text(
-            AppLocaleScope.of(context).accrualSuccessLabel,
-            style: Theme.of(context).textTheme.labelMedium,
-            textAlign: TextAlign.center,
-          ),
+          // SizedBox(
+          //   height: paddingTheme.mediumElementDistance,
+          // ),
+          // Text(
+          //   AppLocaleScope.of(context).accrualSuccessLabel,
+          //   style: Theme.of(context).textTheme.labelMedium,
+          //   textAlign: TextAlign.center,
+          // ),
           SizedBox(
             height: paddingTheme.largeElementDistance,
           ),

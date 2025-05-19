@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/mocked_Events_repository_impl.dart';
+import '../../../account/widget/account_scope.dart';
+import '../../data/events_repository_impl.dart';
 import '../../domain/events_bloc/events_bloc.dart';
 
 class EventsScope extends StatelessWidget {
@@ -15,9 +16,11 @@ class EventsScope extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
     create:
-        (context) =>
-            EventsBloc(SimpleEventsRepositoryImpl())
-              ..add(EventsStarted()),
+        (context) {
+            final dio = AccountScope.dioOf(context);
+            return EventsBloc(EventsRepositoryImpl(dio: dio))
+              ..add(EventsStarted());
+    },
     child: child,
   );
 }

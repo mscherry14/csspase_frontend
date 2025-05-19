@@ -29,13 +29,13 @@ class ParticipantCard extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          //avatar
-          CircleAvatar(
-            backgroundColor:
-                DarkThemeConstants.unhighlighted, //todo: from theme
-            foregroundImage: participant.person.avatar,
-          ),
-          SizedBox(width: paddingTheme.largeElementDistance),
+          // //avatar
+          // CircleAvatar(
+          //   backgroundColor:
+          //       DarkThemeConstants.unhighlighted, //todo: from theme
+          //   foregroundImage: participant.person.avatar,
+          // ),
+          // SizedBox(width: paddingTheme.largeElementDistance),
           //name and accrual
           Expanded(
             child: Column(
@@ -43,7 +43,7 @@ class ParticipantCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  participant.person.name,
+                  participant.name,
                   style: theme.textTheme.headlineMedium,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
@@ -52,7 +52,7 @@ class ParticipantCard extends StatelessWidget {
                 Text(
                   AppLocaleScope.of(
                     context,
-                  ).participantEventAccrual(participant.accrual),
+                  ).participantEventAccrual(participant.sent),
                   style: theme.textTheme.labelMedium,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -67,7 +67,7 @@ class ParticipantCard extends StatelessWidget {
               Router.of(
                 context,
               ).routerDelegate.setNewRoutePath(
-                EventTokenAccrualRoutePath(eventId: eventId, personId: participant.person.id)
+                EventTokenAccrualRoutePath(eventId: eventId, personId: participant.id)
               ); //todo: clear navigation
 
             }, //todo: navigation

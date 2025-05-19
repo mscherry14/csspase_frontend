@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'common/app/widget/app.dart';
 import "package:flutter_web_plugins/url_strategy.dart";
 
-void main() {
+
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   if (kIsWeb) {
     usePathUrlStrategy();

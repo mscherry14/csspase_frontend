@@ -18,16 +18,15 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
       products: [],
     ),
   ) {
-    on<ProductEvent>((event, emit) => switch (event) {
-      ProductReload() => _reloadProduct(event, emit),
-      ProductStarted() => _started(event, emit),
-      ProductEvent() => throw UnimplementedError(), //??? todo: wtf
+    on<ProductEvent>((event, emit) async => switch (event) {
+      ProductReload() => await _reloadProduct(event, emit),
+      ProductStarted() => await _started(event, emit),
     });
   }
 
-  void _reloadProduct(ProductReload event, Emitter emit) {
+  Future<void> _reloadProduct(ProductReload event, Emitter emit) async {
     final state = this.state;
-    _repository.getProducts().then((result) {
+    final result = await _repository.getProducts();
       switch (result) {
         case SimpleOkResponse(:final payload):
           emit(ProductState(products: payload ?? state.products));
@@ -39,10 +38,9 @@ class ProductBloc extends Bloc<ProductEvent, ProductState> {
             ),
           );
       }
-    });
   }
 
-  _started(ProductEvent event, Emitter<ProductState> emit) {
-    _reloadProduct(ProductReload(), emit);
+  _started(ProductEvent event, Emitter<ProductState> emit) async {
+    await _reloadProduct(ProductReload(), emit);
   }
 }

@@ -121,6 +121,11 @@ class DarkAppTheme implements AppTheme {
       filled: true,
     ),
 
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        overlayColor: DarkThemeConstants.text.withAlpha(30),
+      )
+    )
     //   outlinedButtonTheme: OutlinedButtonThemeData(
     //     style: OutlinedButton.styleFrom(
     //       textStyle: textTheme.bodyMedium,

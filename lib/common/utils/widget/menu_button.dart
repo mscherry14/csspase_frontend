@@ -1,9 +1,12 @@
+import 'package:csspace_app/common/locale/locale.dart';
 import 'package:csspace_app/common/navigation/navigation.dart';
 import 'package:csspace_app/common/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../navigation/presentation/paths/auth_extension.dart';
+import '../../../account/domain/account_bloc/account_bloc.dart';
+import '../../../account/widget/account_scope.dart';
+import '../../navigation/presentation/app_user_roles.dart';
 
 class MenuButton extends StatelessWidget {
   const MenuButton({super.key});
@@ -14,7 +17,12 @@ class MenuButton extends StatelessWidget {
       onPressed: () {
         showCustomOverlay(context);
       },
-      icon: CustomIcon(iconPainter: CustomIcons.wallet),
+      icon: CustomIcon(
+        style: IconThemeData(
+          color: Theme.of(context).textTheme.headlineMedium?.color,
+        ),
+        iconPainter: CustomIcons.hamburgerMenu,
+      ),
     );
   }
 }
@@ -44,23 +52,50 @@ void showCustomOverlay(BuildContext context) {
                 onTap: () {}, // чтобы нажатия по меню не закрывали overlay
                 child: ColoredBox(
                   color: Theme.of(context).scaffoldBackgroundColor,
-                  child: BlocBuilder<NavigationBloc, NavigationState>(
+                  child: BlocBuilder<AccountBloc, AccountState>(
                     builder: (context, state) {
                       return SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          spacing: paddingTheme.largeElementDistance,
-                          children: [
-                            SizedBox(height: kToolbarHeight, width: double.infinity,),
-                            MenuNavTile(
-                              role: Roles.student,
-                              isSelected: Roles.student == state.navigationMode,
-                            ),
-                            MenuNavTile(
-                              role: Roles.lector,
-                              isSelected: Roles.lector == state.navigationMode,
-                            ),
-                          ],
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: paddingTheme.largeElementDistance,
+                          ),
+                          child: Column(
+                            mainAxisSize: MainAxisSize.min,
+                            crossAxisAlignment: CrossAxisAlignment.end,
+                            children: [
+                              SizedBox(
+                                height: kToolbarHeight,
+                                width: double.infinity,
+                              ),
+                              if (AccountScope.of(context).contains(Roles.user))
+                                MenuNavTile(
+                                  role: Roles.user,
+                                  isSelected:
+                                      Roles.user ==
+                                      AuthenticatedNavigation.fromRoutePath(
+                                        (Router.of(context).routerDelegate
+                                                as AuthenticatedRouterDelegate)
+                                            .currentConfiguration, //todo: clear navigation
+                                      ),
+                                ),
+                              if (AccountScope.of(
+                                context,
+                              ).contains(Roles.teacher))
+                                MenuNavTile(
+                                  role: Roles.teacher,
+                                  isSelected:
+                                      Roles.teacher ==
+                                      AuthenticatedNavigation.fromRoutePath(
+                                        (Router.of(context).routerDelegate
+                                                as AuthenticatedRouterDelegate)
+                                            .currentConfiguration, //todo: clear navigation
+                                      ),
+                                ),
+                              SizedBox(
+                                height: paddingTheme.mediumElementDistance,
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -89,10 +124,13 @@ class MenuNavTile extends StatelessWidget {
 
     return TextButton(
       onPressed: () {
-        BlocProvider.of<NavigationBloc>(context).add(NavigationChanged(role));
+        (Router.of(context).routerDelegate as AuthenticatedRouterDelegate)
+            .setNewRoutePath(
+              role == Roles.user ? WalletRoutePath() : EventsListRoutePath(),
+            ); //todo: clear navigation
       },
       child: Text(
-        role.name,
+        AppLocaleScope.of(context).roleApp(role.name),
         style: TextStyle(
           color:
               isSelected

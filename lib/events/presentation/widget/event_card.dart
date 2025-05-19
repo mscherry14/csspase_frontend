@@ -1,16 +1,17 @@
-import 'package:csspace_app/events/domain/model/event_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/locale/widget/app_locale_scope.dart';
 import '../../../common/navigation/navigation.dart';
 import '../../../common/theme/theme.dart';
+import '../../domain/events_bloc/events_bloc.dart';
+import '../../domain/model/event_short_model.dart';
 import 'info_chip.dart';
-import 'warning_chip.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key, required this.event});
 
-  final EventModel event;
+  final EventShortModel event;
 
   @override
   Widget build(BuildContext context) {
@@ -43,14 +44,14 @@ class EventCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.displaySmall,
                         ),
                         SizedBox(height: paddingTheme.largeElementDistance),
-                        if (event.deadline.isBefore(DateTime(2025, 9, 1)))
-                          WarningChip(
-                            text: AppLocaleScope.of(
-                              context,
-                            ).accrueDeadline(event.deadline),
-                          ),
-                        if (event.deadline.isBefore(DateTime(2025, 9, 1)))
-                          SizedBox(height: paddingTheme.largeElementDistance),
+                        // if (event.deadline.isBefore(DateTime(2025, 9, 1)))
+                        //   WarningChip(
+                        //     text: AppLocaleScope.of(
+                        //       context,
+                        //     ).accrueDeadline(event.deadline),
+                        //   ),
+                        // if (event.deadline.isBefore(DateTime(2025, 9, 1)))
+                        //   SizedBox(height: paddingTheme.largeElementDistance),
                         Wrap(
                           spacing: paddingTheme.mediumElementDistance,
                           runSpacing: paddingTheme.mediumElementDistance,
@@ -101,6 +102,7 @@ class EventCard extends StatelessWidget {
                 bottom: 0, //paddingTheme.mediumPadding,
                 child: ElevatedButton(
                   onPressed: () {
+                    BlocProvider.of<EventsBloc>(context, listen: false).add(EventsConcreteEventLoad(eventId: event.id));
                     Router.of(context).routerDelegate.setNewRoutePath(
                       EventInfoRoutePath(eventId: event.id),
                     ); //todo: clear navigation

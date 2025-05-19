@@ -9,35 +9,30 @@ part 'history_event.dart';
 part 'history_state.dart';
 part 'history_bloc.freezed.dart';
 
-
 class HistoryBloc extends Bloc<HistoryEvent, HistoryState> {
   final HistoryRepository _repository;
 
-  HistoryBloc(this._repository)
-      : super(
-    const HistoryState(
-      history: [],
-    ),
-  ) {
-    on<HistoryEvent>((event, emit) => switch (event) {
-      HistoryReload() => _reloadHistory(event, emit),
-    });
+  HistoryBloc(this._repository) : super(const HistoryState(history: [])) {
+    on<HistoryEvent>(
+      (event, emit) async => switch (event) {
+        HistoryReload() => await _reloadHistory(event, emit),
+      },
+    );
   }
 
-  void _reloadHistory(HistoryReload event, Emitter emit) {
+  Future<void> _reloadHistory(HistoryReload event, Emitter emit) async {
     final state = this.state;
-    _repository.getHistory().then((result) {
-      switch (result) {
-        case SimpleOkResponse(:final payload):
-          emit(HistoryState(history: payload ?? state.history));
-        case SimpleErrorResponse(:final message, :final payload):
-          emit(
-            HistoryState.error(
-              history: payload ?? state.history,
-              errorMessage: message,
-            ),
-          );
-      }
-    });
+    final result = await _repository.getHistory();
+    switch (result) {
+      case SimpleOkResponse(:final payload):
+        emit(HistoryState(history: payload ?? state.history));
+      case SimpleErrorResponse(:final message, :final payload):
+        emit(
+          HistoryState.error(
+            history: payload ?? state.history,
+            errorMessage: message,
+          ),
+        );
+    }
   }
 }

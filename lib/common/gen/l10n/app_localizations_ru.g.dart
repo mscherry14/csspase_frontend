@@ -176,4 +176,25 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get balance => 'Баланс';
+
+  @override
+  String roleApp(String role) {
+    String _temp0 = intl.Intl.selectLogic(
+      role,
+      {
+        'user': 'Пользователь',
+        'teacher': 'Лектор',
+        'other': 'Другое',
+      },
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String loadingError(Object error) {
+    return 'Ошибка: $error';
+  }
+
+  @override
+  String get loading => 'загрузка...';
 }

@@ -1,8 +1,8 @@
-import 'package:csspace_app/events/domain/model/person_model.dart';
 import 'package:flutter/material.dart';
 
 import '../../../common/locale/locale.dart';
 import '../../../common/theme/theme.dart';
+import '../../domain/model/lector_model.dart';
 
 class LectorCard extends StatelessWidget {
   const LectorCard({
@@ -10,7 +10,7 @@ class LectorCard extends StatelessWidget {
     required this.person,
   });
 
-  final PersonModel person;
+  final LectorModel person;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class LectorCard extends StatelessWidget {
           CircleAvatar(
             backgroundColor:
             DarkThemeConstants.unhighlighted, //todo: from theme
-            foregroundImage: person.avatar, //todo: radius
+            foregroundImage: person.photo, //todo: radius
             minRadius: 24,
           ),
           SizedBox(width: paddingTheme.largeElementDistance),

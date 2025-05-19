@@ -1,7 +1,5 @@
-import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:csspace_app/events/presentation/widget/lector_tile.dart';
 import 'package:csspace_app/events/presentation/widget/participant_tile.dart';
-import 'package:csspace_app/events/presentation/widget/warning_chip.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -25,123 +23,127 @@ class EventInfoScreen extends StatelessWidget {
         PaddingAndRadiusThemeData.defaultThemeData;
     final Color dividerColor =
         Theme.of(context).textTheme.headlineMedium?.color ?? Colors.white;
-    final eventRes = BlocProvider.of<EventsBloc>(
-      context,
-      listen: false,
-    ).getEventById(eventId);
-    if (eventRes is SimpleErrorResponse || eventRes.payload == null) {
-      return Center(child: Text('error'));
-    } else {
-      final EventModel event = eventRes.payload;
-      return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            onPressed: () {
-              Router.of(context).routerDelegate.setNewRoutePath(
-                EventsListRoutePath(),
-              ); //todo: clear navigation
-            },
-            icon: Icon(Icons.arrow_back),
-          ), //TODO: custom + navigation
-        ),
-        body: CustomScrollView(
-          slivers: <Widget>[
-            PinnedHeaderSliver(
-              child: ColoredBox(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: paddingTheme.mediumPadding,
-                  ),
-                  child: Column(
-                    //TODO: NORMAL INFO
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ///HEADLINE
-                      Text(
-                        event.headline,
-                        style: Theme.of(context).textTheme.displaySmall,
-                      ),
-                      SizedBox(height: paddingTheme.largeElementDistance),
 
-                      ///DEADLINE WARNING CHIP IF NEEDED
-                      if (event.deadline.isBefore(DateTime(2025, 9, 1)))
-                        WarningChip(
-                          //todo: fix hardcode
-                          text: AppLocaleScope.of(
-                            context,
-                          ).accrueDeadline(event.deadline),
-                        ),
-                      if (event.deadline.isBefore(DateTime(2025, 9, 1)))
-                        SizedBox(height: paddingTheme.largeElementDistance),
-                    ],
+    return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          onPressed: () {
+            Router.of(context).routerDelegate.setNewRoutePath(
+              EventsListRoutePath(),
+            ); //todo: clear navigation
+          },
+          icon: Icon(Icons.arrow_back),
+        ), //TODO: custom + navigation
+      ),
+      body: BlocBuilder<EventsBloc, EventsState>(
+        builder: (context, state) {
+          if (state is EventsOkState && state.lastOpenedEvent != null) {
+            final EventModel event = state.lastOpenedEvent!;
+            return CustomScrollView(
+              slivers: <Widget>[
+                PinnedHeaderSliver(
+                  child: ColoredBox(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: paddingTheme.mediumPadding,
+                      ),
+                      child: Column(
+                        //TODO: NORMAL INFO
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          ///HEADLINE
+                          Text(
+                            event.headline,
+                            style: Theme.of(context).textTheme.displaySmall,
+                          ),
+                          SizedBox(height: paddingTheme.largeElementDistance),
+
+                          // ///DEADLINE WARNING CHIP IF NEEDED
+                          // if (event.deadline.isBefore(DateTime(2025, 9, 1)))
+                          //   WarningChip(
+                          //     //todo: fix hardcode
+                          //     text: AppLocaleScope.of(
+                          //       context,
+                          //     ).accrueDeadline(event.deadline),
+                          //   ),
+                          // if (event.deadline.isBefore(DateTime(2025, 9, 1)))
+                          //   SizedBox(height: paddingTheme.largeElementDistance),
+                        ],
+                      ),
+                    ),
                   ),
                 ),
-              ),
-            ),
 
-            SliverResizingHeader(
-              minExtentPrototype: EventBalanceWidget(
-                actualBalance: 300,
-                allBalance: 1500,
-              ),
-              maxExtentPrototype: DisappearInfoWidget(event: event),
-              child: ColoredBox(
-                color: Theme.of(context).scaffoldBackgroundColor,
-                child: DisappearInfoWidget(event: event),
-              ),
-            ),
-
-            ///header for participants list
-            PinnedHeaderSliver(
-              child: ColoredBox(
-                color: Theme.of(context).scaffoldBackgroundColor, //!important
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    paddingTheme.mediumPadding,
-                    paddingTheme.mediumPadding,
-                    paddingTheme.mediumPadding,
-                    paddingTheme.smallPadding,
+                SliverResizingHeader(
+                  minExtentPrototype: EventBalanceWidget(
+                    actualBalance: 300,
+                    allBalance: 1500,
                   ),
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        AppLocaleScope.of(context).participants,
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                      SizedBox(width: paddingTheme.mediumElementDistance),
-                      Expanded(
-                        child: Divider(color: dividerColor, thickness: 1),
-                      ),
-                    ],
+                  maxExtentPrototype: DisappearInfoWidget(event: event),
+                  child: ColoredBox(
+                    color: Theme.of(context).scaffoldBackgroundColor,
+                    child: DisappearInfoWidget(event: event),
                   ),
                 ),
-              ),
-            ),
 
-            ///participants list
-            SliverList(
-              delegate: SliverChildBuilderDelegate((
-                BuildContext context,
-                int index,
-              ) {
-                return Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: paddingTheme.mediumPadding,
-                    vertical: paddingTheme.mediumPadding / 2,
+                ///header for participants list
+                PinnedHeaderSliver(
+                  child: ColoredBox(
+                    color:
+                        Theme.of(context).scaffoldBackgroundColor, //!important
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(
+                        paddingTheme.mediumPadding,
+                        paddingTheme.mediumPadding,
+                        paddingTheme.mediumPadding,
+                        paddingTheme.smallPadding,
+                      ),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppLocaleScope.of(context).participants,
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                          SizedBox(width: paddingTheme.mediumElementDistance),
+                          Expanded(
+                            child: Divider(color: dividerColor, thickness: 1),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
-                  child: ParticipantCard(
-                    participant: event.participantsList[index],
-                  ),
-                );
-              }, childCount: event.participantsList.length),
-            ),
-          ],
-        ),
-      );
-    }
+                ),
+
+                ///participants list
+                SliverList(
+                  delegate: SliverChildBuilderDelegate((
+                    BuildContext context,
+                    int index,
+                  ) {
+                    return Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: paddingTheme.mediumPadding,
+                        vertical: paddingTheme.mediumPadding / 2,
+                      ),
+                      child: ParticipantCard(
+                        participant: event.participantsList[index],
+                      ),
+                    );
+                  }, childCount: event.participantsList.length),
+                ),
+              ],
+            );
+          } else {
+            return Scaffold(
+              body: Center(child: Text('error')),
+            ); //TODO: beautiful error
+          }
+        },
+      ),
+    );
   }
 }
 
@@ -180,9 +182,7 @@ class DisappearInfoWidget extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       ///LECTOR INFO
-                      LectorCard(
-                        person: event.teachersList.first,
-                      ),
+                      LectorCard(person: event.teachersList.first),
                       SizedBox(height: paddingTheme.largeElementDistance),
 
                       ///INFO CHIPS
@@ -198,7 +198,10 @@ class DisappearInfoWidget extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: paddingTheme.largeElementDistance),
-                      EventBalanceWidget(actualBalance: event.actualBalance, allBalance: event.allBalance),
+                      EventBalanceWidget(
+                        actualBalance: event.actualBalance,
+                        allBalance: event.allBalance,
+                      ),
                     ],
                   ),
                 ),

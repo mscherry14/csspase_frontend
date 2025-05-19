@@ -13,29 +13,27 @@ class PurchaseBloc extends Bloc<PurchaseEvent, PurchaseState> {
   final PurchaseRepository _repository;
 
   PurchaseBloc(this._repository) : super(const PurchaseState.initial()) {
-    on<PurchaseEvent>((event, emit) => switch (event) {
-          ConfirmPurchaseEvent() => _purchase(event, emit),
-          InitEvent() => _init(event, emit),
-          PurchaseEvent() => null,
+    on<PurchaseEvent>((event, emit) async => switch (event) {
+          ConfirmPurchaseEvent() => await _purchase(event, emit),
+          InitEvent() => await _init(event, emit),
         });
   }
 
-  _purchase(ConfirmPurchaseEvent event, Emitter<PurchaseState> emit) {
+  _purchase(ConfirmPurchaseEvent event, Emitter<PurchaseState> emit) async {
     final state = this.state;
     if (state is WaitForConfirmationState) {
-      _repository.buyProduct(state.product.productId).then((response) {
+      final response = await _repository.buyProduct(state.product.productId);
         switch (response) {
           case SimpleOkResponse():
             emit(PurchaseState.success());
           case SimpleErrorResponse(:final message, :final payload):
             emit(PurchaseState.error(message: message));
         }
-      });
     }
   }
 
   _init(InitEvent event, Emitter<PurchaseState> emit) async {
-    _repository.getProductById(event.productId).then((response) {
+    final response = await _repository.getProductById(event.productId);
       switch (response) {
         case SimpleOkResponse(:final payload):
           emit(payload != null
@@ -44,6 +42,5 @@ class PurchaseBloc extends Bloc<PurchaseEvent, PurchaseState> {
         case SimpleErrorResponse(:final message, :final payload):
           emit(PurchaseState.productError(message: message));
       }
-    });
   }
 }

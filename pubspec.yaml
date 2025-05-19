@@ -20,6 +20,9 @@ dependencies:
   flutter_bloc: ^9.1.1
   path_drawing: ^1.0.1
   google_fonts: ^6.2.1
+  web: any
+  dio: ^5.8.0+1
+  json_annotation: ^4.9.0
 
 dev_dependencies:
   flutter_test:
@@ -27,6 +30,7 @@ dev_dependencies:
   flutter_lints: ^5.0.0
   build_runner: ^2.4.15
   freezed: ^3.0.6
+  json_serializable: ^6.9.5
 
 
 

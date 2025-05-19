@@ -1,11 +1,12 @@
 import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:csspace_app/events/domain/model/event_info_model.dart';
 import 'package:csspace_app/events/domain/model/event_model.dart';
+import 'package:csspace_app/events/domain/model/lector_model.dart';
 import 'package:csspace_app/events/domain/model/participant_model.dart';
 
-import 'package:csspace_app/events/domain/model/person_model.dart';
 
 import '../domain/events_repository.dart';
+import '../domain/model/event_short_model.dart';
 
 class SimpleEventsRepositoryImpl implements EventsRepository {
   @override
@@ -20,11 +21,10 @@ class SimpleEventsRepositoryImpl implements EventsRepository {
 
         ],
         deadline: DateTime(2025, 5, 7),
-        teachersList: [PersonModel(id: 'id', name: 'Препод Преподович')],
+        teachersList: [LectorModel(id: 'id', name: 'Препод Преподович', role: 'teacher')],
         participantsList: List.generate(20, (index) {
           return ParticipantModel(
-            person: PersonModel(id: 'ptspnt $index', name: 'Акакий Акакиевич'),
-            accrual: index * 5,
+            sent: index * 5, id: '', name: 'Акакий Акакиевич',
           );
         }),
         actualBalance: 5000,
@@ -34,10 +34,10 @@ class SimpleEventsRepositoryImpl implements EventsRepository {
   }
 
   @override
-  Future<SimpleResponse<List<EventModel>>> getEvents() async {
+  Future<SimpleResponse<List<EventShortModel>>> getEvents() async {
     return SimpleOkResponse(
       payload: [
-        EventModel(
+        EventShortModel(
           id: 'id0',
           headline: "Нелинейная оптимизация без ограничений",
           infoList: [
@@ -45,21 +45,11 @@ class SimpleEventsRepositoryImpl implements EventsRepository {
             EventInfoModel(text: 'ПОМИ РАН', isDate: false),
           ],
           deadline: DateTime(2026),
-          teachersList: [PersonModel(id: 'id', name: 'Федор Писниченко')],
-          participantsList: List.generate(20, (index) {
-            return ParticipantModel(
-              person: PersonModel(
-                id: 'ptspnt $index',
-                name: 'Акакий Акакиевич',
-              ),
-              accrual: index * 5,
-            );
-          }),
           actualBalance: 200,
           allBalance: 1000,
         ),
 
-        EventModel(
+        EventShortModel(
           id: 'id1',
           headline: "Как оцифровать качество Поиска: от случайных запросов до ключевых метрик",
           infoList: [
@@ -68,63 +58,33 @@ class SimpleEventsRepositoryImpl implements EventsRepository {
             EventInfoModel(text: 'ПОМИ РАН', isDate: false),
           ],
           deadline: DateTime(2025, 5, 20, 23, 59),
-          teachersList: [PersonModel(id: 'id', name: 'Роман Бойкий')],
-          participantsList: List.generate(20, (index) {
-            return ParticipantModel(
-              person: PersonModel(
-                id: 'ptspnt $index',
-                name: 'Акакий Акакиевич',
-              ),
-              accrual: index * 5,
-            );
-          }),
           actualBalance: 300,
           allBalance: 1500,
         ),
 
-        EventModel(
+        EventShortModel(
           id: 'id2',
           headline: "Случайные графы",
           infoList: [
             EventInfoModel(text: 'ПОМИ РАН', isDate: false),
           ],
           deadline: DateTime(2026),
-          teachersList: [PersonModel(id: 'id', name: 'Андрей Райгородский')],
-          participantsList: List.generate(20, (index) {
-            return ParticipantModel(
-              person: PersonModel(
-                id: 'ptspnt $index',
-                name: 'Акакий Акакиевич',
-              ),
-              accrual: index * 5,
-            );
-          }),
           actualBalance: 20,
           allBalance: 5000,
         ),
 
-        EventModel(
+        EventShortModel(
           id: 'id3',
           headline: "Видеокарты: что они могут? Могут ли они хоть что-то?",
           infoList: [
             EventInfoModel(text: 'ПОМИ РАН', isDate: false),
           ],
           deadline: DateTime(2026),
-          teachersList: [PersonModel(id: 'id', name: 'Николай Полярный')],
-          participantsList: List.generate(20, (index) {
-            return ParticipantModel(
-              person: PersonModel(
-                id: 'ptspnt $index',
-                name: 'Акакий Акакиевич',
-              ),
-              accrual: index * 5,
-            );
-          }),
           actualBalance: 0,
           allBalance: 1000,
         ),
 
-        EventModel(
+        EventShortModel(
           id: 'id4',
           headline: "Как тысячи роботов-сортировщиков работают на автоматизированных складах?",
           infoList: [
@@ -133,16 +93,6 @@ class SimpleEventsRepositoryImpl implements EventsRepository {
             EventInfoModel(text: 'ПОМИ РАН', isDate: false),
           ],
           deadline: DateTime(2026),
-          teachersList: [PersonModel(id: 'id', name: 'Константин Яковлев')],
-          participantsList: List.generate(20, (index) {
-            return ParticipantModel(
-              person: PersonModel(
-                id: 'ptspnt $index',
-                name: 'Акакий Акакиевич',
-              ),
-              accrual: index * 5,
-            );
-          }),
           actualBalance: 900,
           allBalance: 1000,
         ),

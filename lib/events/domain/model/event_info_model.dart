@@ -1,14 +1,12 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'event_info_model.freezed.dart';
+part 'event_info_model.g.dart';
 
 @freezed
-class EventInfoModel with _$EventInfoModel {
-  @override
-  final String text;
-  @override
-  final bool isDate;
+abstract class EventInfoModel with _$EventInfoModel {
+  @JsonSerializable()
+  const factory EventInfoModel({required String text, required bool isDate,}) = _EventInfoModel;
 
-  const EventInfoModel({required this.text, required this.isDate,});
-//TODO: implement EventInfo
+  factory EventInfoModel.fromJson(Map<String, dynamic> json) => _$EventInfoModelFromJson(json);
 }

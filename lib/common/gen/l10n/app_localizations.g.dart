@@ -326,6 +326,24 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Баланс'**
   String get balance;
+
+  /// Order status message on order card
+  ///
+  /// In ru, this message translates to:
+  /// **'{role, select, user{Пользователь} teacher{Лектор} other{Другое}}'**
+  String roleApp(String role);
+
+  /// No description provided for @loadingError.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка: {error}'**
+  String loadingError(Object error);
+
+  /// No description provided for @loading.
+  ///
+  /// In ru, this message translates to:
+  /// **'загрузка...'**
+  String get loading;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

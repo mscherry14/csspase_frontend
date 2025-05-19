@@ -1,7 +1,9 @@
-import 'package:csspace_app/shop/data/mocked_orders_repository_impl.dart';
+import 'package:csspace_app/account/widget/account_scope.dart';
 import 'package:csspace_app/shop/domain/order_bloc/order_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../data/orders_repository_impl.dart';
 
 class OrderScope extends StatelessWidget {
   final Widget child;
@@ -14,7 +16,7 @@ class OrderScope extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
         create: (context) =>
-            OrderBloc(SimpleOrderRepositoryImpl())..add(OrderStarted()),
+            OrderBloc(OrderRepositoryImpl(dio: AccountScope.dioOf(context)))..add(OrderStarted()),
         child: child,
       );
 }

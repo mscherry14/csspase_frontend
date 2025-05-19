@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/mocked_products_repository_impl.dart';
+import '../../../account/widget/account_scope.dart';
+import '../../data/products_repository_impl.dart';
 import '../../domain/product_bloc/product_bloc.dart';
 
 class ProductsScope extends StatelessWidget {
@@ -15,7 +16,7 @@ class ProductsScope extends StatelessWidget {
   @override
   Widget build(BuildContext context) => BlocProvider(
     create: (context) =>
-    ProductBloc(SimpleProductRepositoryImpl())..add(ProductStarted()),
+    ProductBloc(ProductRepositoryImpl(dio: AccountScope.dioOf(context)))..add(ProductStarted()),
     child: child,
   );
 }

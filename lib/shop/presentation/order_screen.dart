@@ -20,7 +20,6 @@ class OrderScreen extends StatelessWidget {
         slivers: <Widget>[
           ///transaction list
           BlocBuilder<OrderBloc, OrderState>(
-            buildWhen: (prev, curr) => prev != curr,
             builder: (context, state) {
               return SliverList(
                 delegate: SliverChildBuilderDelegate(

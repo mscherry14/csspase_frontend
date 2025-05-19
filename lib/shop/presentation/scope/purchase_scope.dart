@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../data/mocked_purchase_repository_impl.dart';
+import '../../../account/widget/account_scope.dart';
+import '../../data/purchase_repository_impl.dart';
 import '../../domain/purchase_bloc/purchase_bloc.dart';
 
 class PurchaseScope extends StatelessWidget {
@@ -16,7 +17,7 @@ class PurchaseScope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => PurchaseBloc(SimplePurchaseRepositoryImpl())
+        create: (context) => PurchaseBloc(PurchaseRepositoryImpl(dio: AccountScope.dioOf(context)))
           ..add(InitEvent(productId: id)),
         child: child,
       );

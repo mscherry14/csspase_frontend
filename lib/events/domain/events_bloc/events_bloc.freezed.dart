@@ -107,9 +107,75 @@ String toString() {
 
 
 /// @nodoc
+
+
+class EventsConcreteEventLoad implements EventsEvent {
+  const EventsConcreteEventLoad({required this.eventId});
+  
+
+ final  String eventId;
+
+/// Create a copy of EventsEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$EventsConcreteEventLoadCopyWith<EventsConcreteEventLoad> get copyWith => _$EventsConcreteEventLoadCopyWithImpl<EventsConcreteEventLoad>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventsConcreteEventLoad&&(identical(other.eventId, eventId) || other.eventId == eventId));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,eventId);
+
+@override
+String toString() {
+  return 'EventsEvent.loadEvent(eventId: $eventId)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EventsConcreteEventLoadCopyWith<$Res> implements $EventsEventCopyWith<$Res> {
+  factory $EventsConcreteEventLoadCopyWith(EventsConcreteEventLoad value, $Res Function(EventsConcreteEventLoad) _then) = _$EventsConcreteEventLoadCopyWithImpl;
+@useResult
+$Res call({
+ String eventId
+});
+
+
+
+
+}
+/// @nodoc
+class _$EventsConcreteEventLoadCopyWithImpl<$Res>
+    implements $EventsConcreteEventLoadCopyWith<$Res> {
+  _$EventsConcreteEventLoadCopyWithImpl(this._self, this._then);
+
+  final EventsConcreteEventLoad _self;
+  final $Res Function(EventsConcreteEventLoad) _then;
+
+/// Create a copy of EventsEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? eventId = null,}) {
+  return _then(EventsConcreteEventLoad(
+eventId: null == eventId ? _self.eventId : eventId // ignore: cast_nullable_to_non_nullable
+as String,
+  ));
+}
+
+
+}
+
+/// @nodoc
 mixin _$EventsState {
 
- List<EventModel> get events;
+ List<EventShortModel> get events; EventModel? get lastOpenedEvent;
 /// Create a copy of EventsState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -120,16 +186,16 @@ $EventsStateCopyWith<EventsState> get copyWith => _$EventsStateCopyWithImpl<Even
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventsState&&const DeepCollectionEquality().equals(other.events, events));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventsState&&const DeepCollectionEquality().equals(other.events, events)&&(identical(other.lastOpenedEvent, lastOpenedEvent) || other.lastOpenedEvent == lastOpenedEvent));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(events));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(events),lastOpenedEvent);
 
 @override
 String toString() {
-  return 'EventsState(events: $events)';
+  return 'EventsState(events: $events, lastOpenedEvent: $lastOpenedEvent)';
 }
 
 
@@ -140,11 +206,11 @@ abstract mixin class $EventsStateCopyWith<$Res>  {
   factory $EventsStateCopyWith(EventsState value, $Res Function(EventsState) _then) = _$EventsStateCopyWithImpl;
 @useResult
 $Res call({
- List<EventModel> events
+ List<EventShortModel> events, EventModel? lastOpenedEvent
 });
 
 
-
+$EventModelCopyWith<$Res>? get lastOpenedEvent;
 
 }
 /// @nodoc
@@ -157,13 +223,26 @@ class _$EventsStateCopyWithImpl<$Res>
 
 /// Create a copy of EventsState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? events = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? events = null,Object? lastOpenedEvent = freezed,}) {
   return _then(_self.copyWith(
 events: null == events ? _self.events : events // ignore: cast_nullable_to_non_nullable
-as List<EventModel>,
+as List<EventShortModel>,lastOpenedEvent: freezed == lastOpenedEvent ? _self.lastOpenedEvent : lastOpenedEvent // ignore: cast_nullable_to_non_nullable
+as EventModel?,
   ));
 }
+/// Create a copy of EventsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventModelCopyWith<$Res>? get lastOpenedEvent {
+    if (_self.lastOpenedEvent == null) {
+    return null;
+  }
 
+  return $EventModelCopyWith<$Res>(_self.lastOpenedEvent!, (value) {
+    return _then(_self.copyWith(lastOpenedEvent: value));
+  });
+}
 }
 
 
@@ -171,16 +250,17 @@ as List<EventModel>,
 
 
 class EventsOkState implements EventsState {
-  const EventsOkState({required final  List<EventModel> events}): _events = events;
+  const EventsOkState({required final  List<EventShortModel> events, this.lastOpenedEvent}): _events = events;
   
 
- final  List<EventModel> _events;
-@override List<EventModel> get events {
+ final  List<EventShortModel> _events;
+@override List<EventShortModel> get events {
   if (_events is EqualUnmodifiableListView) return _events;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_events);
 }
 
+@override final  EventModel? lastOpenedEvent;
 
 /// Create a copy of EventsState
 /// with the given fields replaced by the non-null parameter values.
@@ -192,16 +272,16 @@ $EventsOkStateCopyWith<EventsOkState> get copyWith => _$EventsOkStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventsOkState&&const DeepCollectionEquality().equals(other._events, _events));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventsOkState&&const DeepCollectionEquality().equals(other._events, _events)&&(identical(other.lastOpenedEvent, lastOpenedEvent) || other.lastOpenedEvent == lastOpenedEvent));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_events));
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_events),lastOpenedEvent);
 
 @override
 String toString() {
-  return 'EventsState(events: $events)';
+  return 'EventsState(events: $events, lastOpenedEvent: $lastOpenedEvent)';
 }
 
 
@@ -212,11 +292,11 @@ abstract mixin class $EventsOkStateCopyWith<$Res> implements $EventsStateCopyWit
   factory $EventsOkStateCopyWith(EventsOkState value, $Res Function(EventsOkState) _then) = _$EventsOkStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<EventModel> events
+ List<EventShortModel> events, EventModel? lastOpenedEvent
 });
 
 
-
+@override $EventModelCopyWith<$Res>? get lastOpenedEvent;
 
 }
 /// @nodoc
@@ -229,30 +309,44 @@ class _$EventsOkStateCopyWithImpl<$Res>
 
 /// Create a copy of EventsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? events = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? events = null,Object? lastOpenedEvent = freezed,}) {
   return _then(EventsOkState(
 events: null == events ? _self._events : events // ignore: cast_nullable_to_non_nullable
-as List<EventModel>,
+as List<EventShortModel>,lastOpenedEvent: freezed == lastOpenedEvent ? _self.lastOpenedEvent : lastOpenedEvent // ignore: cast_nullable_to_non_nullable
+as EventModel?,
   ));
 }
 
+/// Create a copy of EventsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventModelCopyWith<$Res>? get lastOpenedEvent {
+    if (_self.lastOpenedEvent == null) {
+    return null;
+  }
 
+  return $EventModelCopyWith<$Res>(_self.lastOpenedEvent!, (value) {
+    return _then(_self.copyWith(lastOpenedEvent: value));
+  });
+}
 }
 
 /// @nodoc
 
 
 class EventsErrorState implements EventsState {
-  const EventsErrorState({required final  List<EventModel> events, required this.errorMessage}): _events = events;
+  const EventsErrorState({required final  List<EventShortModel> events, this.lastOpenedEvent, required this.errorMessage}): _events = events;
   
 
- final  List<EventModel> _events;
-@override List<EventModel> get events {
+ final  List<EventShortModel> _events;
+@override List<EventShortModel> get events {
   if (_events is EqualUnmodifiableListView) return _events;
   // ignore: implicit_dynamic_type
   return EqualUnmodifiableListView(_events);
 }
 
+@override final  EventModel? lastOpenedEvent;
  final  String errorMessage;
 
 /// Create a copy of EventsState
@@ -265,16 +359,16 @@ $EventsErrorStateCopyWith<EventsErrorState> get copyWith => _$EventsErrorStateCo
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventsErrorState&&const DeepCollectionEquality().equals(other._events, _events)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventsErrorState&&const DeepCollectionEquality().equals(other._events, _events)&&(identical(other.lastOpenedEvent, lastOpenedEvent) || other.lastOpenedEvent == lastOpenedEvent)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_events),errorMessage);
+int get hashCode => Object.hash(runtimeType,const DeepCollectionEquality().hash(_events),lastOpenedEvent,errorMessage);
 
 @override
 String toString() {
-  return 'EventsState.error(events: $events, errorMessage: $errorMessage)';
+  return 'EventsState.error(events: $events, lastOpenedEvent: $lastOpenedEvent, errorMessage: $errorMessage)';
 }
 
 
@@ -285,11 +379,11 @@ abstract mixin class $EventsErrorStateCopyWith<$Res> implements $EventsStateCopy
   factory $EventsErrorStateCopyWith(EventsErrorState value, $Res Function(EventsErrorState) _then) = _$EventsErrorStateCopyWithImpl;
 @override @useResult
 $Res call({
- List<EventModel> events, String errorMessage
+ List<EventShortModel> events, EventModel? lastOpenedEvent, String errorMessage
 });
 
 
-
+@override $EventModelCopyWith<$Res>? get lastOpenedEvent;
 
 }
 /// @nodoc
@@ -302,15 +396,28 @@ class _$EventsErrorStateCopyWithImpl<$Res>
 
 /// Create a copy of EventsState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? events = null,Object? errorMessage = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? events = null,Object? lastOpenedEvent = freezed,Object? errorMessage = null,}) {
   return _then(EventsErrorState(
 events: null == events ? _self._events : events // ignore: cast_nullable_to_non_nullable
-as List<EventModel>,errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as List<EventShortModel>,lastOpenedEvent: freezed == lastOpenedEvent ? _self.lastOpenedEvent : lastOpenedEvent // ignore: cast_nullable_to_non_nullable
+as EventModel?,errorMessage: null == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
 as String,
   ));
 }
 
+/// Create a copy of EventsState
+/// with the given fields replaced by the non-null parameter values.
+@override
+@pragma('vm:prefer-inline')
+$EventModelCopyWith<$Res>? get lastOpenedEvent {
+    if (_self.lastOpenedEvent == null) {
+    return null;
+  }
 
+  return $EventModelCopyWith<$Res>(_self.lastOpenedEvent!, (value) {
+    return _then(_self.copyWith(lastOpenedEvent: value));
+  });
+}
 }
 
 // dart format on

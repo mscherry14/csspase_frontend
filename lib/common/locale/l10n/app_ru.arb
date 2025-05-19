@@ -148,5 +148,22 @@
   "lector": "Преподаватель",
 
   "eventBalance": "Баланс мероприятия:",
-  "balance": "Баланс"
+  "balance": "Баланс",
+
+  "roleApp": "{role, select, user{Пользователь} teacher{Лектор} other{Другое}}",
+  "@roleApp": {
+    "description": "Order status message on order card",
+    "placeholders": {
+      "role": {}
+    }
+  },
+
+  "loadingError": "Ошибка: {error}",
+  "@loadingError": {
+    "placeholders": {
+      "error": {}
+    }
+  },
+
+  "loading": "загрузка..."
 }

@@ -1,3 +1,4 @@
+import 'package:csspace_app/events/domain/events_bloc/events_bloc.dart';
 import 'package:csspace_app/events/presentation/controller/accrual_form_bloc/form_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -6,7 +7,6 @@ import '../../../common/locale/widget/app_locale_scope.dart';
 import '../../../common/navigation/navigation.dart';
 import '../../../common/theme/theme.dart';
 import '../../../common/utils/widget/dialog_with_close_button.dart';
-import '../../../common/utils/simple_response.dart';
 import '../../../common/utils/widget/smth_went_wrong_dialog_body.dart';
 import '../../domain/accrual_bloc/accrual_bloc.dart';
 import 'accrual_text_field.dart';
@@ -88,38 +88,24 @@ class _DialogBody extends StatelessWidget {
         SizedBox(height: paddingTheme.mediumElementDistance),
 
         ///HERE PARTICIPANT CARD WITHOUT BUTTON
-        Row(
+        Column(
           mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            //avatar
-            CircleAvatar(
-              backgroundColor:
-                  DarkThemeConstants.unhighlighted, //todo: from theme
-              foregroundImage: state.recipient.person.avatar,
+            Text(
+              state.recipient.name,
+              style: Theme.of(context).textTheme.headlineMedium,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
             ),
-            SizedBox(width: paddingTheme.largeElementDistance),
-            //name and accrual
-            Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  state.recipient.person.name,
-                  style: Theme.of(context).textTheme.headlineMedium,
-                  maxLines: 2,
-                  overflow: TextOverflow.ellipsis,
-                ),
-                //SizedBox(height: paddingTheme.minimalElementDistance),
-                Text(
-                  AppLocaleScope.of(
-                    context,
-                  ).participantEventAccrual(state.recipient.accrual),
-                  style: Theme.of(context).textTheme.labelMedium,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ],
+            //SizedBox(height: paddingTheme.minimalElementDistance),
+            Text(
+              AppLocaleScope.of(
+                context,
+              ).participantEventAccrual(state.recipient.sent),
+              style: Theme.of(context).textTheme.labelMedium,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
             ),
           ],
         ),
@@ -142,20 +128,24 @@ class _DialogBody extends StatelessWidget {
                     .eventId;
 
             if (state is AccrualSuccessState) {
+              context.read<EventsBloc>().add(
+                EventsConcreteEventLoad(eventId: eventId), //TODO
+              );
               Router.of(context).routerDelegate.setNewRoutePath(
-                EventTokenSendingResultRoutePath(
+                EventTokenSendingSuccessRoutePath(
                   eventId: eventId,
-                  success: SimpleOkResponse(payload: true),
+                  receiverName: state.receiverName,
+                  amount: state.accrual,
                 ),
               ); //todo: clear navigation
             } else if (state is AccrualErrorState) {
+              context.read<EventsBloc>().add(
+                EventsConcreteEventLoad(eventId: eventId), //TODO
+              );
               Router.of(context).routerDelegate.setNewRoutePath(
-                EventTokenSendingResultRoutePath(
+                EventTokenSendingErrorRoutePath(
                   eventId: eventId,
-                  success: SimpleErrorResponse(
-                    payload: false,
-                    message: state.message ?? '',
-                  ),
+                  errorMessage: state.message,
                 ),
               ); //todo: clear navigation
             }
@@ -181,7 +171,7 @@ class _DialogBody extends StatelessWidget {
                     AppLocaleScope.of(context).accrue,
                     style: Theme.of(
                       context,
-                    ).textTheme.headlineSmall?.apply(color: Colors.black),
+                    ).textTheme.headlineSmall?.apply(color: DarkThemeConstants.background),
                   ),
                 );
               },

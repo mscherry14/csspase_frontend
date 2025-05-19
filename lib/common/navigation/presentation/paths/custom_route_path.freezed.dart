@@ -240,78 +240,139 @@ as String,
 /// @nodoc
 
 
-class EventTokenSendingResultRoutePath extends ConcreteEventRoutePath {
-  const EventTokenSendingResultRoutePath({required this.eventId, required this.success}): super._();
+class EventTokenSendingSuccessRoutePath extends ConcreteEventRoutePath {
+  const EventTokenSendingSuccessRoutePath({required this.eventId, required this.receiverName, required this.amount}): super._();
   
 
 @override final  String eventId;
- final  SimpleResponse<bool> success;
+ final  String receiverName;
+ final  int amount;
 
 /// Create a copy of ConcreteEventRoutePath
 /// with the given fields replaced by the non-null parameter values.
 @override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$EventTokenSendingResultRoutePathCopyWith<EventTokenSendingResultRoutePath> get copyWith => _$EventTokenSendingResultRoutePathCopyWithImpl<EventTokenSendingResultRoutePath>(this, _$identity);
+$EventTokenSendingSuccessRoutePathCopyWith<EventTokenSendingSuccessRoutePath> get copyWith => _$EventTokenSendingSuccessRoutePathCopyWithImpl<EventTokenSendingSuccessRoutePath>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventTokenSendingResultRoutePath&&(identical(other.eventId, eventId) || other.eventId == eventId)&&(identical(other.success, success) || other.success == success));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventTokenSendingSuccessRoutePath&&(identical(other.eventId, eventId) || other.eventId == eventId)&&(identical(other.receiverName, receiverName) || other.receiverName == receiverName)&&(identical(other.amount, amount) || other.amount == amount));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,eventId,success);
+int get hashCode => Object.hash(runtimeType,eventId,receiverName,amount);
 
 @override
 String toString() {
-  return 'ConcreteEventRoutePath.sendingResult(eventId: $eventId, success: $success)';
+  return 'ConcreteEventRoutePath.sendingSuccess(eventId: $eventId, receiverName: $receiverName, amount: $amount)';
 }
 
 
 }
 
 /// @nodoc
-abstract mixin class $EventTokenSendingResultRoutePathCopyWith<$Res> implements $ConcreteEventRoutePathCopyWith<$Res> {
-  factory $EventTokenSendingResultRoutePathCopyWith(EventTokenSendingResultRoutePath value, $Res Function(EventTokenSendingResultRoutePath) _then) = _$EventTokenSendingResultRoutePathCopyWithImpl;
+abstract mixin class $EventTokenSendingSuccessRoutePathCopyWith<$Res> implements $ConcreteEventRoutePathCopyWith<$Res> {
+  factory $EventTokenSendingSuccessRoutePathCopyWith(EventTokenSendingSuccessRoutePath value, $Res Function(EventTokenSendingSuccessRoutePath) _then) = _$EventTokenSendingSuccessRoutePathCopyWithImpl;
 @override @useResult
 $Res call({
- String eventId, SimpleResponse<bool> success
+ String eventId, String receiverName, int amount
 });
 
 
-$SimpleResponseCopyWith<bool, $Res> get success;
+
 
 }
 /// @nodoc
-class _$EventTokenSendingResultRoutePathCopyWithImpl<$Res>
-    implements $EventTokenSendingResultRoutePathCopyWith<$Res> {
-  _$EventTokenSendingResultRoutePathCopyWithImpl(this._self, this._then);
+class _$EventTokenSendingSuccessRoutePathCopyWithImpl<$Res>
+    implements $EventTokenSendingSuccessRoutePathCopyWith<$Res> {
+  _$EventTokenSendingSuccessRoutePathCopyWithImpl(this._self, this._then);
 
-  final EventTokenSendingResultRoutePath _self;
-  final $Res Function(EventTokenSendingResultRoutePath) _then;
+  final EventTokenSendingSuccessRoutePath _self;
+  final $Res Function(EventTokenSendingSuccessRoutePath) _then;
 
 /// Create a copy of ConcreteEventRoutePath
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? eventId = null,Object? success = null,}) {
-  return _then(EventTokenSendingResultRoutePath(
+@override @pragma('vm:prefer-inline') $Res call({Object? eventId = null,Object? receiverName = null,Object? amount = null,}) {
+  return _then(EventTokenSendingSuccessRoutePath(
 eventId: null == eventId ? _self.eventId : eventId // ignore: cast_nullable_to_non_nullable
-as String,success: null == success ? _self.success : success // ignore: cast_nullable_to_non_nullable
-as SimpleResponse<bool>,
+as String,receiverName: null == receiverName ? _self.receiverName : receiverName // ignore: cast_nullable_to_non_nullable
+as String,amount: null == amount ? _self.amount : amount // ignore: cast_nullable_to_non_nullable
+as int,
   ));
 }
 
+
+}
+
+/// @nodoc
+
+
+class EventTokenSendingErrorRoutePath extends ConcreteEventRoutePath {
+  const EventTokenSendingErrorRoutePath({required this.eventId, this.errorMessage}): super._();
+  
+
+@override final  String eventId;
+ final  String? errorMessage;
+
 /// Create a copy of ConcreteEventRoutePath
 /// with the given fields replaced by the non-null parameter values.
-@override
+@override @JsonKey(includeFromJson: false, includeToJson: false)
 @pragma('vm:prefer-inline')
-$SimpleResponseCopyWith<bool, $Res> get success {
-  
-  return $SimpleResponseCopyWith<bool, $Res>(_self.success, (value) {
-    return _then(_self.copyWith(success: value));
-  });
+$EventTokenSendingErrorRoutePathCopyWith<EventTokenSendingErrorRoutePath> get copyWith => _$EventTokenSendingErrorRoutePathCopyWithImpl<EventTokenSendingErrorRoutePath>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is EventTokenSendingErrorRoutePath&&(identical(other.eventId, eventId) || other.eventId == eventId)&&(identical(other.errorMessage, errorMessage) || other.errorMessage == errorMessage));
 }
+
+
+@override
+int get hashCode => Object.hash(runtimeType,eventId,errorMessage);
+
+@override
+String toString() {
+  return 'ConcreteEventRoutePath.sendingError(eventId: $eventId, errorMessage: $errorMessage)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $EventTokenSendingErrorRoutePathCopyWith<$Res> implements $ConcreteEventRoutePathCopyWith<$Res> {
+  factory $EventTokenSendingErrorRoutePathCopyWith(EventTokenSendingErrorRoutePath value, $Res Function(EventTokenSendingErrorRoutePath) _then) = _$EventTokenSendingErrorRoutePathCopyWithImpl;
+@override @useResult
+$Res call({
+ String eventId, String? errorMessage
+});
+
+
+
+
+}
+/// @nodoc
+class _$EventTokenSendingErrorRoutePathCopyWithImpl<$Res>
+    implements $EventTokenSendingErrorRoutePathCopyWith<$Res> {
+  _$EventTokenSendingErrorRoutePathCopyWithImpl(this._self, this._then);
+
+  final EventTokenSendingErrorRoutePath _self;
+  final $Res Function(EventTokenSendingErrorRoutePath) _then;
+
+/// Create a copy of ConcreteEventRoutePath
+/// with the given fields replaced by the non-null parameter values.
+@override @pragma('vm:prefer-inline') $Res call({Object? eventId = null,Object? errorMessage = freezed,}) {
+  return _then(EventTokenSendingErrorRoutePath(
+eventId: null == eventId ? _self.eventId : eventId // ignore: cast_nullable_to_non_nullable
+as String,errorMessage: freezed == errorMessage ? _self.errorMessage : errorMessage // ignore: cast_nullable_to_non_nullable
+as String?,
+  ));
+}
+
+
 }
 
 /// @nodoc

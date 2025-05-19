@@ -387,33 +387,69 @@ $ParticipantModelCopyWith<$Res> get recipient {
 
 
 class AccrualSuccessState implements AccrualState {
-  const AccrualSuccessState();
+  const AccrualSuccessState({required this.receiverName, required this.accrual});
   
 
+ final  String receiverName;
+ final  int accrual;
 
-
+/// Create a copy of AccrualState
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$AccrualSuccessStateCopyWith<AccrualSuccessState> get copyWith => _$AccrualSuccessStateCopyWithImpl<AccrualSuccessState>(this, _$identity);
 
 
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is AccrualSuccessState);
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is AccrualSuccessState&&(identical(other.receiverName, receiverName) || other.receiverName == receiverName)&&(identical(other.accrual, accrual) || other.accrual == accrual));
 }
 
 
 @override
-int get hashCode => runtimeType.hashCode;
+int get hashCode => Object.hash(runtimeType,receiverName,accrual);
 
 @override
 String toString() {
-  return 'AccrualState.success()';
+  return 'AccrualState.success(receiverName: $receiverName, accrual: $accrual)';
 }
 
 
 }
 
+/// @nodoc
+abstract mixin class $AccrualSuccessStateCopyWith<$Res> implements $AccrualStateCopyWith<$Res> {
+  factory $AccrualSuccessStateCopyWith(AccrualSuccessState value, $Res Function(AccrualSuccessState) _then) = _$AccrualSuccessStateCopyWithImpl;
+@useResult
+$Res call({
+ String receiverName, int accrual
+});
 
 
+
+
+}
+/// @nodoc
+class _$AccrualSuccessStateCopyWithImpl<$Res>
+    implements $AccrualSuccessStateCopyWith<$Res> {
+  _$AccrualSuccessStateCopyWithImpl(this._self, this._then);
+
+  final AccrualSuccessState _self;
+  final $Res Function(AccrualSuccessState) _then;
+
+/// Create a copy of AccrualState
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? receiverName = null,Object? accrual = null,}) {
+  return _then(AccrualSuccessState(
+receiverName: null == receiverName ? _self.receiverName : receiverName // ignore: cast_nullable_to_non_nullable
+as String,accrual: null == accrual ? _self.accrual : accrual // ignore: cast_nullable_to_non_nullable
+as int,
+  ));
+}
+
+
+}
 
 /// @nodoc
 
