@@ -2,7 +2,7 @@ import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:dio/dio.dart';
 
 import '../domain/model/product.dart';
-import '../domain/product_repository.dart';
+import '../domain/repositories/product_repository.dart';
 
 
 class ProductRepositoryImpl implements ProductRepository {

@@ -4,7 +4,7 @@ import 'package:csspace_app/events/domain/model/event_model.dart';
 import 'package:csspace_app/events/domain/model/event_short_model.dart';
 import 'package:dio/dio.dart';
 
-import '../domain/events_repository.dart';
+import '../domain/repositories/events_repository.dart';
 
 class EventsRepositoryImpl implements EventsRepository {
 

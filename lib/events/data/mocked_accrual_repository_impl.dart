@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:csspace_app/events/domain/model/participant_model.dart';
 
-import '../domain/accrual_repository.dart';
+import '../domain/repositories/accrual_repository.dart';
 import '../domain/model/accrual_model.dart';
 
 class SimpleAccrualRepositoryImpl implements AccrualRepository {

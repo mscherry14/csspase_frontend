@@ -2,7 +2,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../common/utils/simple_response.dart';
-import '../events_repository.dart';
+import '../repositories/events_repository.dart';
 import '../model/event_model.dart';
 import '../model/event_short_model.dart';
 

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../common/utils/simple_response.dart';
 import '../model/order.dart';
-import '../order_repository.dart';
+import '../repositories/order_repository.dart';
 
 part 'order_event.dart';
 part 'order_state.dart';

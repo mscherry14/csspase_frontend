@@ -6,7 +6,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../domain/product_bloc/product_bloc.dart';
 
 
-
 class ProductsScreen extends StatelessWidget {
   const ProductsScreen({super.key});
 

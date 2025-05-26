@@ -22,7 +22,10 @@ abstract class EventModel with _$EventModel {
     required int allBalance,
   }) = _EventModel;
 
-  factory EventModel.fromJson(Map<String, dynamic> json, List<dynamic> participantsJson) {
+  factory EventModel.fromJson(
+    Map<String, dynamic> json,
+    List<dynamic> participantsJson,
+  ) {
     final List<LectorModel> lectors = [];
     for (final lector in json['speakers']) {
       lectors.add(LectorModel.fromJson(lector));
@@ -48,13 +51,16 @@ abstract class EventModel with _$EventModel {
 
   static List<EventInfoModel> _parseInfoList(Map<String, dynamic> json) {
     final List<EventInfoModel> infoList = [];
-    for (final elem in json["tags"]) {
-      infoList.add(EventInfoModel(text: "$elem", isDate: false));
+    if (json["tags"] is List) {
+      for (final elem in json["tags"]) {
+        infoList.add(EventInfoModel(text: "$elem", isDate: false));
+      }
     }
-    for (final elem in json["dateTags"]) {
-      infoList.add(EventInfoModel(text: "$elem", isDate: true));
+    if (json["dateTags"] is List) {
+      for (final elem in json["dateTags"]) {
+        infoList.add(EventInfoModel(text: "$elem", isDate: true));
+      }
     }
     return infoList;
   }
-
 }

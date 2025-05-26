@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../../../common/navigation/presentation/app_user_roles.dart';
-import '../account_repository.dart';
+import '../repositories/account_repository.dart';
 
 part 'account_bloc.freezed.dart';
 part 'account_event.dart';

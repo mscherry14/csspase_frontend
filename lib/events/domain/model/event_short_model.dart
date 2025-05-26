@@ -38,13 +38,5 @@ abstract class EventShortModel with _$EventShortModel {
     }
 
     return items;
-    // final List<EventInfoModel> infoList = [];
-    // for (final elem in json["tags"]) {
-    //   infoList.add(EventInfoModel(text: "$elem", isDate: false));
-    // }
-    // for (final elem in json["dateTags"]) {
-    //   infoList.add(EventInfoModel(text: "$elem", isDate: true));
-    // }
-    // return infoList;
   }
 }

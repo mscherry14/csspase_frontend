@@ -1,5 +1,5 @@
 import 'package:csspace_app/common/app/widget/unauthorized_app_material_context.dart';
-import 'package:csspace_app/common/utils/jwt_local_storage.dart';
+import 'package:csspace_app/account/data/utils/jwt_local_storage.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

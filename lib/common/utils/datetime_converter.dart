@@ -12,9 +12,11 @@ class DateTimeConverter extends JsonConverter<DateTime, String> {
     //     // Ignore.
     //   }
     // }
-    final DateTime? dateTime = DateTime.tryParse(json);
-    if (dateTime != null) {
-      return dateTime;
+    final String utcString = json.endsWith('Z') ? json : '${json}Z';
+    final DateTime? utcTime = DateTime.tryParse(utcString);
+    if (utcTime != null) {
+      print("$utcTime, ${utcTime.toLocal()}");
+      return utcTime.toLocal();
     }
     throw Exception("cannot parse datetime");
   }
@@ -30,7 +32,7 @@ class DateTimeNullConverter extends JsonConverter<DateTime?, String?> {
 
   @override
   DateTime? fromJson(String? json) {
-    return DateTime.tryParse(json ?? "");
+    return DateTime.tryParse("${json}Z")?.toLocal();
   }
 
   @override

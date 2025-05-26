@@ -3,7 +3,7 @@ import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../model/product.dart';
-import '../purchase_repository.dart';
+import '../repositories/purchase_repository.dart';
 
 part 'purchase_event.dart';
 part 'purchase_state.dart';

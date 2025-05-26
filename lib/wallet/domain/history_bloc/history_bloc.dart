@@ -3,7 +3,7 @@ import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:csspace_app/wallet/domain/model/transaction_info_model.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-import '../history_repository.dart';
+import '../repositories/history_repository.dart';
 
 part 'history_event.dart';
 part 'history_state.dart';

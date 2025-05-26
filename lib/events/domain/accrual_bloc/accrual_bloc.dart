@@ -1,7 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../common/utils/simple_response.dart';
-import '../accrual_repository.dart';
+import '../repositories/accrual_repository.dart';
 import '../model/participant_model.dart';
 
 part 'accrual_event.dart';

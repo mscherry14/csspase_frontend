@@ -1,7 +1,7 @@
 import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:dio/dio.dart';
 
-import '../domain/balance_repository.dart';
+import '../domain/repositories/balance_repository.dart';
 
 class BalanceRepositoryImpl implements BalanceRepository {
 

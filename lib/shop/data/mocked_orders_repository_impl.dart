@@ -2,7 +2,7 @@ import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:csspace_app/shop/domain/model/status_enum.dart';
 
 import '../domain/model/order.dart';
-import '../domain/order_repository.dart';
+import '../domain/repositories/order_repository.dart';
 
 class SimpleOrderRepositoryImpl implements OrderRepository {
   @override

@@ -2,7 +2,7 @@ import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:dio/dio.dart';
 
 import '../domain/model/order.dart';
-import '../domain/order_repository.dart';
+import '../domain/repositories/order_repository.dart';
 
 class OrderRepositoryImpl implements OrderRepository {
   final Dio dio;

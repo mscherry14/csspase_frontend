@@ -2,6 +2,7 @@ import 'package:csspace_app/wallet/domain/balance_bloc/balance_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocBuilder;
 
+import '../../../account/widget/account_scope.dart';
 import '../../navigation/navigation.dart';
 import '../../theme/theme.dart';
 import 'menu_button.dart';
@@ -57,7 +58,7 @@ class UserAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               Expanded(child: SizedBox.shrink()),
-              MenuButton(),
+              if (AccountScope.of(context).length > 1) MenuButton(),
             ],
           ),
         ),

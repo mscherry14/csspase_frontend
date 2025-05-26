@@ -4,7 +4,7 @@ import 'package:csspace_app/common/utils/simple_response.dart';
 
 import 'package:csspace_app/shop/domain/model/product.dart';
 
-import '../domain/purchase_repository.dart';
+import '../domain/repositories/purchase_repository.dart';
 
 class SimplePurchaseRepositoryImpl implements PurchaseRepository {
   @override

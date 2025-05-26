@@ -2,7 +2,7 @@ import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:csspace_app/wallet/domain/model/transaction_info_model.dart';
 import 'package:dio/dio.dart';
 
-import '../domain/history_repository.dart';
+import '../domain/repositories/history_repository.dart';
 
 class HistoryRepositoryImpl implements HistoryRepository {
   final Dio dio;

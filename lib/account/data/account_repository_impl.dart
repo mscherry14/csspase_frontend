@@ -1,13 +1,13 @@
 import 'dart:convert';
 
 import 'package:csspace_app/common/navigation/presentation/app_user_roles.dart';
-import 'package:csspace_app/common/utils/jwt_local_storage.dart';
+import 'package:csspace_app/account/data/utils/jwt_local_storage.dart';
 
 import 'package:csspace_app/common/utils/simple_response.dart';
 import 'package:dio/dio.dart';
 
-import '../../common/utils/telegram.dart';
-import '../domain/account_repository.dart';
+import 'utils/telegram.dart';
+import '../domain/repositories/account_repository.dart';
 
 class AccountRepositoryImpl implements AccountRepository {
   final Dio dio;
