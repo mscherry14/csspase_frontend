@@ -1,4 +1,5 @@
 import 'package:csspace_app/events/domain/events_bloc/events_bloc.dart';
+import 'package:csspace_app/events/presentation/scope/single_event_scope.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -26,11 +27,7 @@ class LectorRouterDelegate extends RouterDelegate<LectorRoutePath>
     final pages = <Page>[
       MaterialPage(canPop: false, child: EventListScreen()),
       if (_currentConfiguration is ConcreteEventRoutePath)
-        MaterialPage(
-          child: EventInfoScreen(
-            eventId: (_currentConfiguration as ConcreteEventRoutePath).eventId,
-          ),
-        ),
+        MaterialPage(child: EventInfoScreen()),
       if (_currentConfiguration is EventTokenAccrualRoutePath)
         ModalDialogPage(
           key: ValueKey('send_tokens'),
@@ -55,11 +52,22 @@ class LectorRouterDelegate extends RouterDelegate<LectorRoutePath>
         ),
     ];
     return EventsScope(
-      child: Navigator(
-        key: navigatorKey,
-        pages: pages,
-        onDidRemovePage: (page) {},
-      ),
+      child:
+          (_currentConfiguration is EventsListRoutePath)
+              ? Navigator(
+                key: navigatorKey,
+                pages: pages,
+                onDidRemovePage: (page) {},
+              )
+              : SingleEventScope(
+                eventId:
+                    (_currentConfiguration as ConcreteEventRoutePath).eventId,
+                child: Navigator(
+                  key: navigatorKey,
+                  pages: pages,
+                  onDidRemovePage: (page) {},
+                ),
+              ),
     );
   }
 

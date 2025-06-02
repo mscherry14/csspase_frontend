@@ -1,5 +1,6 @@
 import 'package:csspace_app/common/locale/locale.dart';
 import 'package:csspace_app/events/domain/events_bloc/events_bloc.dart';
+import 'package:csspace_app/events/domain/single_event_bloc/single_event_bloc.dart';
 import 'package:csspace_app/events/presentation/widget/event_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

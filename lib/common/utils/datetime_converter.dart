@@ -15,7 +15,6 @@ class DateTimeConverter extends JsonConverter<DateTime, String> {
     final String utcString = json.endsWith('Z') ? json : '${json}Z';
     final DateTime? utcTime = DateTime.tryParse(utcString);
     if (utcTime != null) {
-      print("$utcTime, ${utcTime.toLocal()}");
       return utcTime.toLocal();
     }
     throw Exception("cannot parse datetime");

@@ -102,7 +102,6 @@ class EventCard extends StatelessWidget {
                 bottom: 0, //paddingTheme.mediumPadding,
                 child: ElevatedButton(
                   onPressed: () {
-                    BlocProvider.of<EventsBloc>(context, listen: false).add(EventsConcreteEventLoad(eventId: event.id));
                     Router.of(context).routerDelegate.setNewRoutePath(
                       EventInfoRoutePath(eventId: event.id),
                     ); //todo: clear navigation

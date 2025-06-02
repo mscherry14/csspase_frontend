@@ -1,4 +1,3 @@
-import 'package:csspace_app/events/domain/events_bloc/events_bloc.dart';
 import 'package:csspace_app/events/presentation/controller/accrual_form_bloc/form_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -9,6 +8,7 @@ import '../../../common/theme/theme.dart';
 import '../../../common/utils/widget/dialog_with_close_button.dart';
 import '../../../common/utils/widget/smth_went_wrong_dialog_body.dart';
 import '../../domain/accrual_bloc/accrual_bloc.dart';
+import '../../domain/single_event_bloc/single_event_bloc.dart';
 import 'accrual_text_field.dart';
 
 class AccrualDialog extends StatelessWidget {
@@ -128,8 +128,8 @@ class _DialogBody extends StatelessWidget {
                     .eventId;
 
             if (state is AccrualSuccessState) {
-              context.read<EventsBloc>().add(
-                EventsConcreteEventLoad(eventId: eventId), //TODO
+              context.read<SingleEventBloc>().add(
+                SingleEventEvent.reload(eventId: eventId), //TODO: single event scope
               );
               Router.of(context).routerDelegate.setNewRoutePath(
                 EventTokenSendingSuccessRoutePath(
@@ -139,8 +139,8 @@ class _DialogBody extends StatelessWidget {
                 ),
               ); //todo: clear navigation
             } else if (state is AccrualErrorState) {
-              context.read<EventsBloc>().add(
-                EventsConcreteEventLoad(eventId: eventId), //TODO
+              context.read<SingleEventBloc>().add(
+                SingleEventEvent.reload(eventId: eventId), //TODO single event scope
               );
               Router.of(context).routerDelegate.setNewRoutePath(
                 EventTokenSendingErrorRoutePath(

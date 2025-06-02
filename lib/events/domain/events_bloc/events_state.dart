@@ -4,12 +4,14 @@ part of 'events_bloc.dart';
 abstract class EventsState with _$EventsState {
   const factory EventsState({
     required List<EventShortModel> events,
-    EventModel? lastOpenedEvent,
   }) = EventsOkState;
+
+  const factory EventsState.loading({
+    required List<EventShortModel> events,
+  }) = EventsLoadingState;
 
   const factory EventsState.error({
     required List<EventShortModel> events,
-    EventModel? lastOpenedEvent,
     required String errorMessage,
   }) = EventsErrorState;
 }

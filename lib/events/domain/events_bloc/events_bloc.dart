@@ -18,7 +18,6 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
       (event, emit) async => switch (event) {
         EventsReload() => await _reloadEvents(event, emit),
         EventsStarted() => await _started(event, emit),
-        EventsConcreteEventLoad() => await _getById(event, emit),
       },
     );
   }
@@ -28,28 +27,13 @@ class EventsBloc extends Bloc<EventsEvent, EventsState> {
     final result = await _repository.getEvents();
     switch (result) {
       case SimpleOkResponse(:final payload):
-        emit(EventsState(events: payload ?? state.events, lastOpenedEvent: state.lastOpenedEvent,));
+        emit(EventsState(events: payload ?? state.events,));
       case SimpleErrorResponse(:final message, :final payload):
-        emit(EventsState.error(events: state.events, lastOpenedEvent: state.lastOpenedEvent, errorMessage: message));
+        emit(EventsState.error(events: state.events, errorMessage: message));
     }
   }
 
   _started(EventsEvent event, Emitter<EventsState> emit) async {
     await _reloadEvents(EventsReload(), emit);
-  }
-
-  _getById(EventsConcreteEventLoad event, Emitter<EventsState> emit) async {
-    if (state is EventsOkState) {
-      final state = this.state;
-      final result = await _repository.getEventById(event.eventId);
-      switch (result) {
-        case SimpleOkResponse(:final payload):
-          emit(EventsState(events: state.events, lastOpenedEvent: payload,));
-        case SimpleErrorResponse(:final message, :final payload):
-          emit(EventsState.error(events: state.events,
-              lastOpenedEvent: payload ?? state.lastOpenedEvent,
-              errorMessage: message));
-      }
-    }
   }
 }

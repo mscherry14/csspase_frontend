@@ -6,15 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../common/locale/locale.dart';
 import '../../common/navigation/navigation.dart';
 import '../../common/theme/theme.dart';
-import '../domain/events_bloc/events_bloc.dart';
 import '../domain/model/event_model.dart';
+import '../domain/single_event_bloc/single_event_bloc.dart';
 import 'widget/event_balance_widget.dart';
 import 'widget/info_chip.dart';
 
 class EventInfoScreen extends StatelessWidget {
-  const EventInfoScreen({super.key, required this.eventId});
-
-  final String eventId;
+  const EventInfoScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -35,10 +33,9 @@ class EventInfoScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back),
         ), //TODO: custom + navigation
       ),
-      body: BlocBuilder<EventsBloc, EventsState>(
+      body: BlocBuilder<SingleEventBloc, SingleEventState>(
         builder: (context, state) {
-          if (state is EventsOkState && state.lastOpenedEvent != null) {
-            final EventModel event = state.lastOpenedEvent!;
+          if (state is SingleEventOkState) {
             return CustomScrollView(
               slivers: <Widget>[
                 PinnedHeaderSliver(
@@ -55,7 +52,7 @@ class EventInfoScreen extends StatelessWidget {
                         children: [
                           ///HEADLINE
                           Text(
-                            event.headline,
+                            state.openedEvent.headline,
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                           SizedBox(height: paddingTheme.largeElementDistance),
@@ -81,10 +78,12 @@ class EventInfoScreen extends StatelessWidget {
                     actualBalance: 300,
                     allBalance: 1500,
                   ),
-                  maxExtentPrototype: DisappearInfoWidget(event: event),
+                  maxExtentPrototype: DisappearInfoWidget(
+                    event: state.openedEvent,
+                  ),
                   child: ColoredBox(
                     color: Theme.of(context).scaffoldBackgroundColor,
-                    child: DisappearInfoWidget(event: event),
+                    child: DisappearInfoWidget(event: state.openedEvent),
                   ),
                 ),
 
@@ -129,12 +128,20 @@ class EventInfoScreen extends StatelessWidget {
                         vertical: paddingTheme.mediumPadding / 2,
                       ),
                       child: ParticipantCard(
-                        participant: event.participantsList[index],
+                        participant: state.openedEvent.participantsList[index],
                       ),
                     );
-                  }, childCount: event.participantsList.length),
+                  }, childCount: state.openedEvent.participantsList.length),
                 ),
               ],
+            );
+          } else if (state is SingleEventLoadingState) {
+            return Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: EdgeInsets.all(paddingTheme.mediumPadding),
+                child: CircularProgressIndicator(),
+              ),
             );
           } else {
             return Scaffold(
