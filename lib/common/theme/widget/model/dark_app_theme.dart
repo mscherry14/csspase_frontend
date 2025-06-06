@@ -125,7 +125,12 @@ class DarkAppTheme implements AppTheme {
       style: TextButton.styleFrom(
         overlayColor: DarkThemeConstants.text.withAlpha(30),
       )
-    )
+    ),
+
+    progressIndicatorTheme: const ProgressIndicatorThemeData(
+      color: Colors.white,
+    ),
+
     //   outlinedButtonTheme: OutlinedButtonThemeData(
     //     style: OutlinedButton.styleFrom(
     //       textStyle: textTheme.bodyMedium,
