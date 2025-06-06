@@ -21,15 +21,15 @@ class SingleEventBloc extends Bloc<SingleEventEvent, SingleEventState> {
     );
   }
 
-  _reload(_ReloadSingleEventEvent event, Emitter<SingleEventState> emit) async {
+  Future<void> _reload(_ReloadSingleEventEvent event, Emitter<SingleEventState> emit) async {
     if  (event.eventId != null) await _getById(event.eventId!, emit, preserveState: true);
   }
 
-  _init(_InitSingleEventEvent event, Emitter<SingleEventState> emit) async {
+  Future<void> _init(_InitSingleEventEvent event, Emitter<SingleEventState> emit) async {
     await _getById(event.eventId, emit);
   }
 
-  _getById(String eventId, Emitter<SingleEventState> emit, {bool preserveState = false}) async {
+  Future<void> _getById(String eventId, Emitter<SingleEventState> emit, {bool preserveState = false}) async {
     final state = this.state;
     emit(SingleEventState.loading(openedEvent: preserveState? state.openedEvent : null));
     final result = await _repository.getEventById(eventId);

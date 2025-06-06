@@ -29,6 +29,7 @@ class SimpleAccrualRepositoryImpl implements AccrualRepository {
     required String eventId,
     required String personId,
     required int sum,
+    required String idempotencyKey,
   }) async {
     if (Random().nextBool()) {
       return SimpleOkResponse(payload: null);

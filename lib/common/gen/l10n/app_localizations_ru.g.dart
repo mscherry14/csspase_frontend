@@ -18,7 +18,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String transactionDateTime(DateTime dateTime) {
-    final intl.DateFormat dateTimeDateFormat = intl.DateFormat('d.MM.yyyy HH:mm', localeName);
+    final intl.DateFormat dateTimeDateFormat = intl.DateFormat(
+      'd.MM.yyyy HH:mm',
+      localeName,
+    );
     final String dateTimeString = dateTimeDateFormat.format(dateTime);
 
     return '$dateTimeString';
@@ -39,7 +42,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String orderDateTime(DateTime dateTime) {
-    final intl.DateFormat dateTimeDateFormat = intl.DateFormat('d.MM.yyyy HH:mm', localeName);
+    final intl.DateFormat dateTimeDateFormat = intl.DateFormat(
+      'd.MM.yyyy HH:mm',
+      localeName,
+    );
     final String dateTimeString = dateTimeDateFormat.format(dateTime);
 
     return '$dateTimeString';
@@ -47,15 +53,12 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String orderStatus(String status) {
-    String _temp0 = intl.Intl.selectLogic(
-      status,
-      {
-        'waiting': 'ожидает подтверждения',
-        'completed': 'завершен',
-        'rejected': 'отменён',
-        'other': 'неизвестен',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(status, {
+      'waiting': 'ожидает подтверждения',
+      'completed': 'завершен',
+      'rejected': 'отменён',
+      'other': 'неизвестен',
+    });
     return '$_temp0';
   }
 
@@ -71,13 +74,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get purchaseConfirmation => 'подтверждение покупки';
 
   @override
-  String get purchaseConfirmationBody => 'Вы точно хотите приобрести этот товар?';
+  String get purchaseConfirmationBody =>
+      'Вы точно хотите приобрести этот товар?';
 
   @override
   String get purchaseSuccess => 'Покупка совершена успешно!';
 
   @override
-  String get purchaseSuccessLabel => 'Информацию по поводу получения вы можете отслеживать во вкладке заказов';
+  String get purchaseSuccessLabel =>
+      'Информацию по поводу получения вы можете отслеживать во вкладке заказов';
 
   @override
   String get close => 'закрыть';
@@ -97,7 +102,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get smthWentWrong => 'Что-то пошло не так...';
 
   @override
-  String get smthWentWrongLabel => 'Попробуйте обновить страницу и попробовать позже.';
+  String get smthWentWrongLabel =>
+      'Попробуйте обновить страницу и попробовать позже.';
 
   @override
   String get wallet => 'Кошелек';
@@ -129,14 +135,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String accrualSumError(String message) {
-    String _temp0 = intl.Intl.selectLogic(
-      message,
-      {
-        'zeroOrLess': 'сумма начисления не может быть 0',
-        'overflow': 'сумма начисления не может превышать баланс мероприятия',
-        'other': 'данные некорректны',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(message, {
+      'zeroOrLess': 'сумма начисления не может быть 0',
+      'overflow': 'сумма начисления не может превышать баланс мероприятия',
+      'other': 'данные некорректны',
+    });
     return '$_temp0';
   }
 
@@ -147,7 +150,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get accrualSuccess => 'Начисление выполнено успешно!';
 
   @override
-  String get accrualSuccessLabel => 'Очень успешно, не забудь убрать эту строчку))0)';
+  String get accrualSuccessLabel =>
+      'Очень успешно, не забудь убрать эту строчку))0)';
 
   @override
   String get accrualError => 'Перевод не прошёл :(';
@@ -159,7 +163,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String accrueDeadline(DateTime dateTime) {
-    final intl.DateFormat dateTimeDateFormat = intl.DateFormat('d/MM/yyyy HH:mm', localeName);
+    final intl.DateFormat dateTimeDateFormat = intl.DateFormat(
+      'd/MM/yyyy HH:mm',
+      localeName,
+    );
     final String dateTimeString = dateTimeDateFormat.format(dateTime);
 
     return 'доступно для начислений до $dateTimeString';
@@ -179,14 +186,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String roleApp(String role) {
-    String _temp0 = intl.Intl.selectLogic(
-      role,
-      {
-        'user': 'Пользователь',
-        'teacher': 'Лектор',
-        'other': 'Другое',
-      },
-    );
+    String _temp0 = intl.Intl.selectLogic(role, {
+      'user': 'Пользователь',
+      'teacher': 'Лектор',
+      'other': 'Другое',
+    });
     return '$_temp0';
   }
 

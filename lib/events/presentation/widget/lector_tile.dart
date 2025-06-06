@@ -31,8 +31,8 @@ class LectorCard extends StatelessWidget {
           //avatar
           CircleAvatar(
             backgroundColor:
-            DarkThemeConstants.unhighlighted, //todo: from theme
-            foregroundImage: person.photo, //todo: radius
+            Theme.of(context).cardColor,
+            foregroundImage: person.photo,
             minRadius: 24,
           ),
           SizedBox(width: paddingTheme.largeElementDistance),

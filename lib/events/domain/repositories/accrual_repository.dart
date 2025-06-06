@@ -7,5 +7,5 @@ import '../model/accrual_model.dart';
 abstract interface class AccrualRepository {
   Future<SimpleResponse<ParticipantModel>> getRecipientById({required String eventId, required String personId});
   Future<SimpleResponse<int>> getEventTokensCapacity({required String eventId});
-  Future<SimpleResponse<AccrualModel>> send({required String eventId, required String personId, required int sum});
+  Future<SimpleResponse<AccrualModel>> send({required String eventId, required String personId, required int sum, required String idempotencyKey});
 }

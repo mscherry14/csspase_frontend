@@ -12,7 +12,10 @@ part 'account_state.dart';
 class AccountBloc extends Bloc<AccountEvent, AccountState> {
   final AccountRepository _repository;
 
-  AccountBloc(this._repository) : super(const AccountState.unauthenticated()) {
+  AccountBloc(this._repository)
+    : super(
+        const AccountState.unauthenticated(),
+      ) {
     on<AccountEvent>(
       (event, emit) async => switch (event) {
         AccountLogin() => await _login(event, emit),
@@ -21,22 +24,32 @@ class AccountBloc extends Bloc<AccountEvent, AccountState> {
   }
 
   Future<void> _login(AccountLogin event, Emitter emit) async {
-    //check if authorized
-    final check = await _repository.getAccount();
-    switch (check) {
+    final res = await _repository.login();
+    switch (res) {
       case SimpleOkResponse(:final payload):
         emit(AccountState.authenticated(userRoles: payload ?? {Roles.user}));
       case SimpleErrorResponse(:final message, :final payload):
-        //real login
-        final res = await _repository.login();
-        switch (res) {
-          case SimpleOkResponse(:final payload):
-            emit(
-              AccountState.authenticated(userRoles: payload ?? {Roles.user}),
-            );
-          case SimpleErrorResponse(:final message, :final payload):
-            emit(AccountState.unauthenticated(errorMessage: message));
-        }
+        emit(AccountState.unauthenticated(errorMessage: message));
     }
   }
+  //
+  // Future<void> _login(AccountLogin event, Emitter emit) async {
+  //   //check if authorized
+  //   final check = await _repository.getAccount();
+  //   switch (check) {
+  //     case SimpleOkResponse(:final payload):
+  //       emit(AccountState.authenticated(userRoles: payload ?? {Roles.user}));
+  //     case SimpleErrorResponse(:final message, :final payload):
+  //     //real login
+  //       final res = await _repository.login();
+  //       switch (res) {
+  //         case SimpleOkResponse(:final payload):
+  //           emit(
+  //             AccountState.authenticated(userRoles: payload ?? {Roles.user}),
+  //           );
+  //         case SimpleErrorResponse(:final message, :final payload):
+  //           emit(AccountState.unauthenticated(errorMessage: message));
+  //       }
+  //   }
+  // }
 }

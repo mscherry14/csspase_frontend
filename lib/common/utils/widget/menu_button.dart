@@ -131,7 +131,7 @@ class MenuNavTile extends StatelessWidget {
       },
       child: Text(
         AppLocaleScope.of(context).roleApp(role.name),
-        style: TextStyle(
+        style: Theme.of(context).textTheme.bodyMedium?.apply(
           color:
               isSelected
                   ? BottomNavigationBarTheme.of(context).selectedItemColor

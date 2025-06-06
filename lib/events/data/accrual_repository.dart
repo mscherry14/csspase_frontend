@@ -4,6 +4,7 @@ import 'package:csspace_app/common/utils/simple_response.dart';
 
 import 'package:csspace_app/events/domain/model/participant_model.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter/cupertino.dart';
 
 import '../domain/repositories/accrual_repository.dart';
 import '../domain/model/accrual_model.dart';
@@ -67,10 +68,14 @@ class AccrualRepositoryImpl implements AccrualRepository {
     required String eventId,
     required String personId,
     required int sum,
+    required String idempotencyKey,
   }) async {
     try {
       final res = await dio.post(
         "/teacher/events/$eventId/participants/$personId",
+        options: Options(
+          headers: {'Idempotency-Key': idempotencyKey}
+        ),
         data: jsonEncode({"amount": sum}),
       );
       if (res.statusCode == 200) {

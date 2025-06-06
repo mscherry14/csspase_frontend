@@ -3,15 +3,19 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import '../../../common/utils/simple_response.dart';
 import '../repositories/accrual_repository.dart';
 import '../model/participant_model.dart';
+import '../../../common/utils/domain/idempotency_key_generator.dart';
 
 part 'accrual_event.dart';
 part 'accrual_state.dart';
 part 'accrual_bloc.freezed.dart';
 
 class AccrualBloc extends Bloc<AccrualEvent, AccrualState> {
+  final IdempotencyKeyGenerator _keyGen;
   final AccrualRepository _repository;
+  late final String _idKey;
 
-  AccrualBloc(this._repository) : super(const AccrualState.initial()) {
+  AccrualBloc(this._keyGen, this._repository) : super(const AccrualState.initial()) {
+    _idKey = _keyGen.generate();
     on<AccrualEvent>(
       (event, emit) => switch (event) {
         SendAccrualEvent() => _sendTokens(event, emit),
@@ -27,6 +31,7 @@ class AccrualBloc extends Bloc<AccrualEvent, AccrualState> {
         eventId: state.eventId,
         personId: state.recipient.id,
         sum: event.sum,
+        idempotencyKey: _idKey,
       );
       switch (response) {
         case SimpleOkResponse():

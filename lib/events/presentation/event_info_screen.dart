@@ -10,6 +10,7 @@ import '../domain/model/event_model.dart';
 import '../domain/single_event_bloc/single_event_bloc.dart';
 import 'widget/event_balance_widget.dart';
 import 'widget/info_chip.dart';
+import 'widget/warning_chip.dart';
 
 class EventInfoScreen extends StatelessWidget {
   const EventInfoScreen({super.key});
@@ -57,16 +58,18 @@ class EventInfoScreen extends StatelessWidget {
                           ),
                           SizedBox(height: paddingTheme.largeElementDistance),
 
-                          // ///DEADLINE WARNING CHIP IF NEEDED
-                          // if (event.deadline.isBefore(DateTime(2025, 9, 1)))
-                          //   WarningChip(
-                          //     //todo: fix hardcode
-                          //     text: AppLocaleScope.of(
-                          //       context,
-                          //     ).accrueDeadline(event.deadline),
-                          //   ),
-                          // if (event.deadline.isBefore(DateTime(2025, 9, 1)))
-                          //   SizedBox(height: paddingTheme.largeElementDistance),
+                          ///DEADLINE WARNING CHIP IF NEEDED
+                          if (state.openedEvent.deadline != null)
+                            if (state.openedEvent.deadline!.isBefore(
+                              DateTime.now().add(Duration(days: 7)),
+                            )) ...[
+                              WarningChip(
+                                text: AppLocaleScope.of(
+                                  context,
+                                ).accrueDeadline(state.openedEvent.deadline!),
+                              ),
+                              SizedBox(height: paddingTheme.largeElementDistance),
+                            ],
                         ],
                       ),
                     ),

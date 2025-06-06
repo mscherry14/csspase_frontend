@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../common/locale/widget/app_locale_scope.dart';
 import '../../../common/navigation/navigation.dart';
 import '../../../common/theme/theme.dart';
-import '../../domain/events_bloc/events_bloc.dart';
 import '../../domain/model/event_short_model.dart';
 import 'info_chip.dart';
+import 'warning_chip.dart';
 
 class EventCard extends StatelessWidget {
   const EventCard({super.key, required this.event});
@@ -44,14 +43,17 @@ class EventCard extends StatelessWidget {
                           style: Theme.of(context).textTheme.displaySmall,
                         ),
                         SizedBox(height: paddingTheme.largeElementDistance),
-                        // if (event.deadline.isBefore(DateTime(2025, 9, 1)))
-                        //   WarningChip(
-                        //     text: AppLocaleScope.of(
-                        //       context,
-                        //     ).accrueDeadline(event.deadline),
-                        //   ),
-                        // if (event.deadline.isBefore(DateTime(2025, 9, 1)))
-                        //   SizedBox(height: paddingTheme.largeElementDistance),
+                        if (event.deadline != null)
+                          if (event.deadline!.isBefore(
+                            DateTime.now().add(Duration(days: 7)),
+                          )) ...[
+                            WarningChip(
+                              text: AppLocaleScope.of(
+                                context,
+                              ).accrueDeadline(event.deadline!),
+                            ),
+                            SizedBox(height: paddingTheme.largeElementDistance),
+                          ],
                         Wrap(
                           spacing: paddingTheme.mediumElementDistance,
                           runSpacing: paddingTheme.mediumElementDistance,

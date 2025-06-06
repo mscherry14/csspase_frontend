@@ -1,3 +1,4 @@
+import 'package:csspace_app/common/utils/data/uuid_key_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,7 +18,7 @@ class PurchaseScope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => BlocProvider(
-        create: (context) => PurchaseBloc(PurchaseRepositoryImpl(dio: AccountScope.dioOf(context)))
+        create: (context) => PurchaseBloc(PurchaseRepositoryImpl(dio: AccountScope.dioOf(context)), UuidKeyGenerator())
           ..add(InitEvent(productId: id)),
         child: child,
       );

@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../account/widget/account_scope.dart';
 import '../../data/accrual_repository.dart';
+import '../../../common/utils/data/uuid_key_generator.dart';
 import '../../domain/accrual_bloc/accrual_bloc.dart';
 
 class AccrualScope extends StatelessWidget {
@@ -21,7 +22,7 @@ class AccrualScope extends StatelessWidget {
   Widget build(BuildContext context) => BlocProvider(
     create: (context) {
       final dio = AccountScope.dioOf(context);
-      return AccrualBloc(AccrualRepositoryImpl(dio: dio))
+      return AccrualBloc(UuidKeyGenerator(), AccrualRepositoryImpl(dio: dio))
         ..add(InitEvent(eventId: eventId, recipientId: recipientId));
     },
     child: child,

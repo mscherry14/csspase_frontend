@@ -32,7 +32,7 @@ class ParticipantCard extends StatelessWidget {
           // //avatar
           // CircleAvatar(
           //   backgroundColor:
-          //       DarkThemeConstants.unhighlighted, //todo: from theme
+          //       Theme.of(context).cardColor,
           //   foregroundImage: participant.person.avatar,
           // ),
           // SizedBox(width: paddingTheme.largeElementDistance),

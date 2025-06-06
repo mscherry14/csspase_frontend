@@ -83,7 +83,7 @@ as int,
 
 /// @nodoc
 
-@JsonSerializable(explicitToJson: true)
+
 class _EventModel implements EventModel {
   const _EventModel({required this.id, required this.headline, this.shortDescription = "", required final  List<LectorModel> teachersList, required final  List<ParticipantModel> participantsList, final  List<EventInfoModel> infoList = const [], this.deadline, required this.actualBalance, required this.allBalance}): _teachersList = teachersList,_participantsList = participantsList,_infoList = infoList;
   

@@ -15,7 +15,9 @@ _EventShortModel _$EventShortModelFromJson(Map<String, dynamic> json) =>
               ?.map((e) => EventInfoModel.fromJson(e as Map<String, dynamic>))
               .toList() ??
           const [],
-      deadline: EventShortModel._fromJson(json['registrationDeadline']),
+      deadline: const DateTimeNullConverter().fromJson(
+        json['bankAccountDeadline'] as String?,
+      ),
       actualBalance: (json['balance'] as num).toInt(),
       allBalance: (json['init_balance'] as num).toInt(),
     );
@@ -25,7 +27,9 @@ Map<String, dynamic> _$EventShortModelToJson(_EventShortModel instance) =>
       'eventId': instance.id,
       'title': instance.headline,
       'infoList': instance.infoList.map((e) => e.toJson()).toList(),
-      'registrationDeadline': EventShortModel._toJson(instance.deadline),
+      'bankAccountDeadline': const DateTimeNullConverter().toJson(
+        instance.deadline,
+      ),
       'balance': instance.actualBalance,
       'init_balance': instance.allBalance,
     };

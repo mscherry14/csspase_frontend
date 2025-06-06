@@ -16,7 +16,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$EventShortModel {
 
-@JsonKey(name: "eventId") String get id;@JsonKey(name: "title") String get headline;@JsonKey(readValue: EventShortModel._readInfoList) List<EventInfoModel> get infoList;@JsonKey(name: "registrationDeadline", fromJson: EventShortModel._fromJson, toJson: EventShortModel._toJson) DateTime? get deadline;@JsonKey(name: "balance") int get actualBalance;@JsonKey(name: "init_balance") int get allBalance;
+@JsonKey(name: "eventId") String get id;@JsonKey(name: "title") String get headline;@JsonKey(readValue: EventShortModel._readInfoList) List<EventInfoModel> get infoList;@JsonKey(name: "bankAccountDeadline")@DateTimeNullConverter() DateTime? get deadline;@JsonKey(name: "balance") int get actualBalance;@JsonKey(name: "init_balance") int get allBalance;
 /// Create a copy of EventShortModel
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -49,7 +49,7 @@ abstract mixin class $EventShortModelCopyWith<$Res>  {
   factory $EventShortModelCopyWith(EventShortModel value, $Res Function(EventShortModel) _then) = _$EventShortModelCopyWithImpl;
 @useResult
 $Res call({
-@JsonKey(name: "eventId") String id,@JsonKey(name: "title") String headline,@JsonKey(readValue: EventShortModel._readInfoList) List<EventInfoModel> infoList,@JsonKey(name: "registrationDeadline", fromJson: EventShortModel._fromJson, toJson: EventShortModel._toJson) DateTime? deadline,@JsonKey(name: "balance") int actualBalance,@JsonKey(name: "init_balance") int allBalance
+@JsonKey(name: "eventId") String id,@JsonKey(name: "title") String headline,@JsonKey(readValue: EventShortModel._readInfoList) List<EventInfoModel> infoList,@JsonKey(name: "bankAccountDeadline")@DateTimeNullConverter() DateTime? deadline,@JsonKey(name: "balance") int actualBalance,@JsonKey(name: "init_balance") int allBalance
 });
 
 
@@ -85,7 +85,7 @@ as int,
 
 @JsonSerializable(explicitToJson: true)
 class _EventShortModel implements EventShortModel {
-  const _EventShortModel({@JsonKey(name: "eventId") required this.id, @JsonKey(name: "title") required this.headline, @JsonKey(readValue: EventShortModel._readInfoList) final  List<EventInfoModel> infoList = const [], @JsonKey(name: "registrationDeadline", fromJson: EventShortModel._fromJson, toJson: EventShortModel._toJson) this.deadline, @JsonKey(name: "balance") required this.actualBalance, @JsonKey(name: "init_balance") required this.allBalance}): _infoList = infoList;
+  const _EventShortModel({@JsonKey(name: "eventId") required this.id, @JsonKey(name: "title") required this.headline, @JsonKey(readValue: EventShortModel._readInfoList) final  List<EventInfoModel> infoList = const [], @JsonKey(name: "bankAccountDeadline")@DateTimeNullConverter() this.deadline, @JsonKey(name: "balance") required this.actualBalance, @JsonKey(name: "init_balance") required this.allBalance}): _infoList = infoList;
   factory _EventShortModel.fromJson(Map<String, dynamic> json) => _$EventShortModelFromJson(json);
 
 @override@JsonKey(name: "eventId") final  String id;
@@ -97,7 +97,7 @@ class _EventShortModel implements EventShortModel {
   return EqualUnmodifiableListView(_infoList);
 }
 
-@override@JsonKey(name: "registrationDeadline", fromJson: EventShortModel._fromJson, toJson: EventShortModel._toJson) final  DateTime? deadline;
+@override@JsonKey(name: "bankAccountDeadline")@DateTimeNullConverter() final  DateTime? deadline;
 @override@JsonKey(name: "balance") final  int actualBalance;
 @override@JsonKey(name: "init_balance") final  int allBalance;
 
@@ -134,7 +134,7 @@ abstract mixin class _$EventShortModelCopyWith<$Res> implements $EventShortModel
   factory _$EventShortModelCopyWith(_EventShortModel value, $Res Function(_EventShortModel) _then) = __$EventShortModelCopyWithImpl;
 @override @useResult
 $Res call({
-@JsonKey(name: "eventId") String id,@JsonKey(name: "title") String headline,@JsonKey(readValue: EventShortModel._readInfoList) List<EventInfoModel> infoList,@JsonKey(name: "registrationDeadline", fromJson: EventShortModel._fromJson, toJson: EventShortModel._toJson) DateTime? deadline,@JsonKey(name: "balance") int actualBalance,@JsonKey(name: "init_balance") int allBalance
+@JsonKey(name: "eventId") String id,@JsonKey(name: "title") String headline,@JsonKey(readValue: EventShortModel._readInfoList) List<EventInfoModel> infoList,@JsonKey(name: "bankAccountDeadline")@DateTimeNullConverter() DateTime? deadline,@JsonKey(name: "balance") int actualBalance,@JsonKey(name: "init_balance") int allBalance
 });
 
 

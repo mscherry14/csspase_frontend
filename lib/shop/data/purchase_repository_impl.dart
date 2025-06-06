@@ -11,16 +11,16 @@ class PurchaseRepositoryImpl implements PurchaseRepository {
   PurchaseRepositoryImpl({required this.dio, this.cancelToken});
 
   @override
-  Future<SimpleResponse<Null>> buyProduct(String productId) async {
+  Future<SimpleResponse<Null>> buyProduct(
+    String productId, {
+    required String idempotencyKey,
+  }) async {
     try {
-      final res = await dio.post('/user/orders/$productId');
+      final res = await dio.post(
+        '/user/orders/$productId',
+        options: Options(headers: {'Idempotency-Key': idempotencyKey}),
+      );
       if (res.statusCode == 200) {
-    //     "orderId": "1111111111cup18052025151159",
-    // "price": 0,
-    // "title": "CupCup",
-    // "photo": null,
-    // "orderStatus": "paid",
-    // "updated_at": "2025-05-18T15:11:59.847860Z"
         return SimpleOkResponse(payload: null);
       }
       return SimpleErrorResponse(

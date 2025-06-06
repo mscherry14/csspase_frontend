@@ -1,3 +1,4 @@
+import 'package:csspace_app/common/utils/datetime_converter.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import 'event_info_model.dart';
@@ -14,17 +15,12 @@ abstract class EventShortModel with _$EventShortModel {
     @JsonKey(
       readValue: EventShortModel._readInfoList, // Функция для чтения и объединения полей
     ) @Default([]) List<EventInfoModel> infoList,
-    @JsonKey(name: "registrationDeadline", fromJson: EventShortModel._fromJson, toJson: EventShortModel._toJson) DateTime? deadline,
+    @JsonKey(name: "bankAccountDeadline") @DateTimeNullConverter() DateTime? deadline,
     @JsonKey(name: "balance") required int actualBalance,
     @JsonKey(name: "init_balance") required int allBalance,
   }) = _EventShortModel;
 
   factory EventShortModel.fromJson(Map<String, dynamic> json) => _$EventShortModelFromJson(json);
-
-  static DateTime? _fromJson(Object? timestamp) =>
-      null; //todo: real deadline parsing
-
-  static String _toJson(DateTime? time) => ""; //todo: real deadline parsing
 
   static List<Map<String, dynamic>> _readInfoList(Map<dynamic, dynamic> json, _) {
     final items = <Map<String, dynamic>>[];

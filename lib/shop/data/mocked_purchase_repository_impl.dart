@@ -8,7 +8,7 @@ import '../domain/repositories/purchase_repository.dart';
 
 class SimplePurchaseRepositoryImpl implements PurchaseRepository {
   @override
-  Future<SimpleResponse<Null>> buyProduct(String productId) async {
+  Future<SimpleResponse<Null>> buyProduct(String productId, {required String idempotencyKey}) async {
     if (Random().nextBool()) {
       return SimpleOkResponse(payload: null);
     } else {
